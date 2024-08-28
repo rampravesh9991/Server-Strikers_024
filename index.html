@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Progress Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <div class="progress-card">
+        <div class="progress-header">
+            <span>Daily progress</span>
+            <span class="edit-icon" onclick="editGoal()"></span>
+        </div>
+        <button id="editGoalBtn">Edit Daily Goal</button>
+
+    <!-- The Modal -->
+    <div id="editGoalModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit your daily goal</h2>
+            <label for="dailyGoal">Daily goal</label>
+            <select id="dailyGoal">
+                <option value="1">1 hour</option>
+                <option value="2">2 hours</option>
+                <option value="3">3 hours</option>
+                <!-- Add more options as needed -->
+            </select>
+            <label for="clearTime">Clear daily progress and completed tasks</label>
+            <div>
+                <input type="number" id="clearHour" min="0" max="23" placeholder="0">
+                <span>:</span>
+                <input type="number" id="clearMinute" min="0" max="59" placeholder="00">
+            </div>
+            <div>
+                <input type="checkbox" id="includeWeekends">
+                <label for="includeWeekends">Include weekends in streaks</label>
+            </div>
+            <button id="saveBtn">Save</button>
+            <button id="cancelBtn">Cancel</button>
+        </div>
+    </div>
+
+        <div class="progress-details">
+            <div class="progress-yesterday">
+                <span>Yesterday</span></br>
+                <span id="yesterday-time">0</br> minutes</span>
+            </div>
+            <div class="progress-goal">
+                <div class="circle">
+                    <svg width="100" height="100" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" stroke="#555" stroke-width="10" fill="none" />
+                        <circle id="progress-circle" cx="50" cy="50" r="45" stroke="#00ff00" stroke-width="10" fill="none" stroke-dasharray="283" stroke-dashoffset="283"/>
+                    </svg>
+                    <div class="goal-text">
+                        <span id="goal-percentage">0%</span>
+                        <span id="goal-label">hour</span>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-streak">
+                <span>Streak</span></br>
+                <span id="streak-days">0</br> days</span>
+            </div>
+        </div>
+        <div class="progress-footer">
+            Completed: <span id="completed-time">0 minutes</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
