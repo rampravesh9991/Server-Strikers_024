@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Timer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="focus-timer">
+        <h2>Get Ready to Focus</h2>
+        <p>We’ll turn off notifications and app alerts during each session. For longer sessions, we’ll add a short break so you can recharge.</p>
+        
+        <div class="timer-setting">
+            <div class="num-border">
+                <div class="custom-number-input">
+                    <input type="number" id="focus-time" value="10" min="1">
+                    <div class="arrow-buttons">
+                        <button type="button" class="arrow-up" onclick="changeValue(1)">&#9650;</button>
+                        <button type="button" class="arrow-down" onclick="changeValue(-1)">&#9660;</button>
+                    </div>
+                </div>
+            </div>
+            <span class="mins-label">mins</span>
+        </div>
+        
+        <p id="break-info">You’ll have no breaks</p>
+        
+        <div class="checkbox">
+            <input type="checkbox" id="skip-breaks">
+            <label for="skip-breaks">Skip breaks</label>
+        </div>
+        
+        <button id="start-button">Start Focus Session</button>
+        
+        <div class="timer-container" id="timer-container">
+            <div class="timer-circle-container">
+                <svg class="progress-ring" width="120" height="120">
+                    <circle class="progress-ring__circle-bg" stroke="#e0e0e0" stroke-width="10" fill="transparent" r="54" cx="60" cy="60"/>
+                    <circle class="progress-ring__circle" stroke="#0078d4" stroke-width="10" fill="transparent" r="54" cx="60" cy="60"/>
+                </svg>
+                <div class="time-display" id="time-display">00:00</div>
+            </div>
+            <div class="timer-controls">
+                <button id="pause-button" class="control-button">⏸</button>
+                <div class="back-container">
+                    <button id="back-button" class="control-button"><i class="fa-solid fa-arrow-left"></i></button>
+                    <span class="tooltip">Back to reset timer</span>
+                </div>
+                <button id="resume-button" class="control-button">▶️</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
