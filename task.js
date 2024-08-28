@@ -1,0 +1,1 @@
+console.log(document.querySelector("endBar228 > div").value);
