@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Session</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="focus-session">
+            <button id="theme-toggle">Switch to Light Theme</button> <!-- Moved theme toggle here -->
+
+            <h2>Get ready to focus</h2>
+            <p>We'll turn off notifications and app alerts during each session. For longer sessions, we'll add a short break so you can recharge.</p>
+            <div class="time-setting">
+                <label for="time-input">Time (mins):</label>
+                <input type="number" id="time-input" value="10" min="1">
+            </div>
+            <div class="break-setting">
+                <input type="checkbox" id="skip-breaks">
+                <label for="skip-breaks">Skip breaks</label>
+            </div>
+            <button id="start-button">Start focus session</button>
+            <div class="timer">
+                <div class="flip-clock-wrapper">
+                    <div id="minutes" class="flip-clock__piece">00</div>
+                    <span>:</span>
+                    <div id="seconds" class="flip-clock__piece">00</div>
+                </div>
+                <p id="timer-status">Focus Session</p>
+            </div>
+        </div>
+        
+        <div class="daily-progress">
+            <h2>Daily progress 
+                <span class="edit-icon" id="edit-goal">&#9998;</span> 
+            </h2>
+            <div class="progress-circle">
+                <svg >
+                    <circle cx="50" cy="50" r="45"></circle>
+                    <circle cx="50" cy="50" r="45" id="progress-circle"></circle>
+                </svg>
+                <div class="progress-text">
+                    <p><span id="completed-minutes">0</span> minutes</p>
+                </div>
+            </div>
+            <div id="progress-data" >
+                <p>Daily goal: <span id="daily-goal">0 min</span></p>
+                <p>Completed: <span id="completed-time">0 minutes</span></p>
+                <p>Streak: <span id="streak-days">0 days</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <h2>Edit Your Goal</h2>
+            <div class="goal-setting">
+                <label for="goal-input">Daily Goal (mins):</label>
+                <input type="number" id="goal-input" min="1" >
+            </div>
+            <div class="modal-buttons">
+                <button id="save-button">Save</button>
+                <button id="cancel-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js">
+      
+        
+    </script>
+</body>
+</html>
