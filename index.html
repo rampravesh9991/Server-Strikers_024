@@ -4,33 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productivity Suite</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="styles/styles.css">
 
 </head>
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo"><img src="logo/logo.JPG" height="50px" width="100px"  alt=""></div>
+            <div class="logo"><img src="Assests/logo.JPG" height="50px" width="100px"  alt=""></div>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#get-started" class="cta-button" style="text-decoration: none;">Get Started</a></li>
+                <li><a href="#get-started" class="cta-button" style="text-decoration: none; cursor: pointer;">Get Started</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
          <video autoplay muted loop id="hero-video">
-            <source src="logo/istockphoto-1206259079-640_adpp_is.mp4" type="video/mp4">
+            <source src="Assests/istockphoto-1206259079-640_adpp_is.mp4"  type="video/mp4">
             
         </video>
         <div class="hero-text">
-            <h1>Boost Your Productivity</h1>
+            <h1 >Boost Your Productivity</h1>
             <p>Manage your time, set goals, and stay focused with the ultimate productivity suite.</p>
-            <a href="#" class="cta-button" style="text-decoration: none;">Get Started Now</a>
+            <button style="cursor: pointer;"><a href="#" class="cta-button" style="text-decoration: none;">Get Started Now</a></button>
         </div>
     </section>
+
+   
 
     <section id="features" class="features-section">
         <h2>Features</h2>
@@ -51,19 +55,36 @@
     </section>
 
     <!-- Testimonials Section with Fade-in Effect -->
-    <section id="testimonials" class="testimonials-section">
-        <h2 class="fade-in-text">What Our Users Say</h2>
-        <div class="testimonials-container">
-            <div class="testimonial fade-in">
-                <p>"ProductivePro has transformed the way I work! I'm more focused and organized."</p>
-                <h4>- Alex Smith</h4>
-            </div>
-            <div class="testimonial fade-in">
-                <p>"The Pomodoro timer and task manager help me achieve my daily goals effortlessly."</p>
-                <h4>- Emily Johnson</h4>
-            </div>
+   <section id="testimonials" class="testimonials-section">
+    <h2 class="fade-in-text">What Our Users Say</h2>
+    <div class="testimonials-container">
+        <div class="testimonial fade-in">
+            <p>"ProductivePro has transformed the way I work! I'm more focused and organized."</p>
+            <h4>- Alex Smith</h4>
         </div>
-    </section>
+        <div class="testimonial fade-in">
+            <p>"The Pomodoro timer and task manager help me achieve my daily goals effortlessly."</p>
+            <h4>- Emily Johnson</h4>
+        </div>
+        <div class="testimonial fade-in">
+            <p>"I've tried many productivity apps, but ProductivePro stands out for its simplicity and efficiency."</p>
+            <h4>- Michael Brown</h4>
+        </div>
+        <div class="testimonial fade-in">
+            <p>"The ability to customize my work sessions has made me more efficient and less stressed."</p>
+            <h4>- Sarah Wilson</h4>
+        </div>
+        <div class="testimonial fade-in">
+            <p>"ProductivePro is a game-changer. I can't imagine managing my time without it anymore."</p>
+            <h4>- James Lee</h4>
+        </div>
+        <div class="testimonial fade-in">
+            <p>"This app has completely revolutionized how I tackle my daily tasks. Highly recommended!"</p>
+            <h4>- Linda Clark</h4>
+        </div>
+    </div>
+</section>
+
 
     <!-- Call to Action Section with Button Animation -->
     <section id="cta" class="cta-section">
@@ -76,18 +97,165 @@
         <h2>Ready to Supercharge Your Productivity?</h2>
         <a href="#" class="button-gradient cta-button" style="text-decoration: none;">Join Now</a>
     </section>
+    <div class="about-section">
+    <h2>Creativity</h2>
+    <div class="about-grid">
+        <div class="about-grid-item">
+            <img src="https://img.freepik.com/premium-vector/technology-background-with-digital-number-timer-concept-countdown_115579-956.jpg" alt="About Image 1">
+            <div class="overlay-text">Timer</div>
+        </div>
+        <div class="about-grid-item">
+            <img src="https://img.freepik.com/premium-photo/cardano-blockchain-platform_23-2150411956.jpg" alt="About Image 2">
+            <div class="overlay-text">Innovative Ideas</div>
+        </div>
+        <div class="about-grid-item">
+            <img src="https://img.freepik.com/premium-photo/technical-blueprint-showing-design-gear-system-with-overlays-electric-circuit-diagrams_34950-27596.jpg" alt="About Image 3">
+            <div class="overlay-text">Quality Work</div>
+        </div>
+        <div class="about-grid-item">
+            <img src="https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_640.jpg" alt="About Image 4">
+            <div class="overlay-text">Collaborative Team</div>
+        </div>
+        <div class="about-grid-item">
+            <img src="https://img.freepik.com/premium-photo/blue-technology-background-with-digital-tech_573056-3477.jpg" alt="About Image 5">
+            <div class="overlay-text">Passion for Excellence</div>
+        </div>
+        
+    </div>
+</div>
+
+<div style="height: 400px; background-color: black; position: relative; overflow: hidden; ">
+    <div style="display: flex;">
+        <img style="height: 400px; width: 400px; position: relative; left: 12%;" src="Assests/cartoon-clock-waving-hand-illustration-50839668-removebg.png" alt="">
+        <div id="dynamic" style="display: flex; flex-direction: column;  justify-content: center;  margin-left: 340px;">
+            
+    
+
+        </div>
+    
+    </div>
+    
+    <div id="d1" style="background-color: white; height: 300px; position: absolute;z-index: 1111; transform: rotate(-3deg); left: 20%; top: 20%; width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <h1 >No Task Available!!</h1>
+        
+        <button id="btn" style="background-color: #333;
+    color: #fff;
+    padding: 5px 20px;
+    width: 20%;
+    border-radius: 5px;
+    text-decoration: none;">Wanna Add <span style="font-size: 30px;">&spades;</span></button>
+        
+    </div>
+</div>
 
 
-    <section id="about" class="about-section">
-        <h2>About Us</h2>
-        <p>ProductivePro is on a mission to help individuals maximize their time, increase productivity, and achieve their goals. We believe in simple, effective tools that make time management enjoyable and engaging.</p>
-    </section>
 
-    <footer>
-        <p>&copy; 2024 Focus Sphere. All rights reserved.</p>
-    </footer>
+    
 
 
-    <script src="index.js"></script>
+    <div style="position: relative;">
+
+  <footer class="bg-dark text-center text-lg-start text-white">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!--Grid row-->
+    <div class="row mt-4">
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">Pomodoro Tools</h5>
+
+        <ul class="list-unstyled mb-0">
+          <li>
+            <a href="#!" class="text-white"><i class="fas fa-clock fa-fw fa-sm me-2"></i>Pomodoro Timer</a>
+          </li>
+          <li>
+            <a href="#!" class="text-white"><i class="fas fa-list fa-fw fa-sm me-2"></i>To-Do List</a>
+          </li>
+          <li>
+            <a href="#!" class="text-white"><i class="fas fa-stopwatch fa-fw fa-sm me-2"></i>Smart Watch Sync</a>
+          </li>
+        </ul>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">Resources</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!" class="text-white"><i class="fas fa-shipping-fast fa-fw fa-sm me-2"></i>User Guide</a>
+          </li>
+          <li>
+            <a href="#!" class="text-white"><i class="fas fa-undo-alt fa-fw fa-sm me-2"></i>FAQ</a>
+          </li>
+          <li>
+            <a href="#!" class="text-white"><i class="far fa-file-alt fa-fw fa-sm me-2"></i>Privacy Policy</a>
+          </li>
+          <li>
+            <a href="#!" class="text-white"><i class="far fa-file-alt fa-fw fa-sm me-2"></i>Terms of Service</a>
+          </li>
+        </ul>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">Get in Touch</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="mailto:support@pomodoroapp.com" class="text-white" style="text-decoration: none;"><i class="fas fa-envelope fa-fw fa-sm me-2"></i>Email Us</a>
+          </li>
+          <li>
+            <a href="#!" class="text-white" style="text-decoration: none;"><i class="fas fa-phone-alt fa-fw fa-sm me-2"></i>+123 456 7890</a>
+          </li>
+          <li>
+            <a href="#!" class="text-white" style="text-decoration: none;"><i class="fas fa-map-marker-alt fa-fw fa-sm me-2"></i>123 Timer Lane, Workville</a>
+          </li>
+        </ul>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">Connect with Us</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="https://www.facebook.com" class="text-white" target="_blank"><i class="fab fa-facebook fa-fw fa-sm me-2"></i>Facebook</a>
+          </li>
+          <li>
+            <a href="https://www.twitter.com" class="text-white" target="_blank"><i class="fab fa-twitter fa-fw fa-sm me-2"></i>Twitter</a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com" class="text-white" target="_blank"><i class="fab fa-instagram fa-fw fa-sm me-2"></i>Instagram</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com" class="text-white" target="_blank"><i class="fab fa-linkedin fa-fw fa-sm me-2"></i>LinkedIn</a>
+          </li>
+        </ul>
+      </div>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    © 2024 Pomodoro App:
+    <a class="text-white" href="#">PomodoroApp.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+
+</div>
+<!-- End of .container -->
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="scripts/index.js"></script>
 </body>
 </html>
