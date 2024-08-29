@@ -1,180 +1,226 @@
-let timerInterval;
-let isPaused = false;
-let remainingTime = 0;
-let focusTime = 0; // Total focus time for the session
-let breakDuration = 60; // Break duration in seconds (1 minute)
-let isRunning = false;
-let breaks = 0; // Number of breaks based on focus time
-let breakTimes = []; // Times when breaks should occur
 
-const circle = document.querySelector('.progress-ring__circle');
-const circleBg = document.querySelector('.progress-ring__circle-bg');
-const radius = circle.r.baseVal.value;
-const circumference = radius * 2 * Math.PI;
-const display = document.getElementById('time-display');
-const startButton = document.getElementById('start-button');
-const pauseButton = document.getElementById('pause-button');
-const resumeButton = document.getElementById('resume-button');
-const backButton = document.getElementById('back-button');
-const timerContainer = document.getElementById('timer-container');
-const focusTimerElements = document.querySelectorAll('.focus-timer > *:not(#timer-container)');
-const focusTimeInput = document.getElementById('focus-time');
-const breakInfo = document.getElementById('break-info');
+document.getElementById("pause-button").addEventListener("click", pauseTimer);
+document.getElementById("resume-button").addEventListener("click", resumeTimer);
+document.getElementById("back-button").addEventListener("click", goBack);
 
-pauseButton.disabled = true;
-resumeButton.disabled = true;
+      document
+        .getElementById("start-button")
+        .addEventListener("click", startFocusSession);
+      document
+        .getElementById("edit-goal")
+        .addEventListener("click", openEditModal);
+      document
+        .getElementById("save-button")
+        .addEventListener("click", saveGoalSettings);
+      document
+        .getElementById("cancel-button")
+        .addEventListener("click", closeEditModal);
+      document
+        .getElementById("theme-toggle")
+        .addEventListener("click", toggleTheme);
 
-circle.style.strokeDasharray = `${circumference}`;
-circleBg.style.strokeDasharray = `${circumference}`;
+      let countdown;
+      let streak = 0;
+      let isLightTheme = false;
+      let timeLeft;
+      let isPaused = false;
 
-// Event listener for input change in focus time
-focusTimeInput.addEventListener('input', calculateBreaks);
+      function startFocusSession() {
 
-// Function to start the focus session
-function startFocusSession() {
-    focusTime = parseInt(focusTimeInput.value);
-    let skipBreaks = document.getElementById('skip-breaks').checked;
+        timer.style.display = 'block';
+        
+       
+        let time = parseInt(document.getElementById("time-input").value) * 60;
+        let skipBreaks = document.getElementById("skip-breaks").checked;
+        let breakTime = 5 * 60; // 5 minutes in seconds
 
-    if (isNaN(focusTime) || focusTime <= 0) {
-        alert("Please enter a valid number of minutes.");
-        return;
-    }
+      
 
-    remainingTime = focusTime * 60; // Convert focus time to seconds
-    isRunning = true;
-    isPaused = false;
-    pauseButton.disabled = false;
-    resumeButton.disabled = true;
-
-    circle.style.strokeDashoffset = circumference;
-    updateDisplay();
-    timerContainer.style.display = 'block';
-    focusTimerElements.forEach(el => el.style.display = 'none');
-
-    // Calculate break times based on focus time
-    if (!skipBreaks) {
-        breakTimes = [];
-        for (let i = 1; i <= breaks; i++) {
-            breakTimes.push(i * (focusTime * 60 / (breaks + 1))); // Adjust break intervals
+        if (time > 25 * 60 && !skipBreaks) {
+          time -= breakTime;
+          setTimeout(() => alert("Time for a break!"), time * 1000);
         }
-    }
+        timeLeft = time;
+        startTimer(time);
+      }
 
-    timerInterval = setInterval(() => {
-        if (remainingTime <= 0) {
-            clearInterval(timerInterval);
-            isRunning = false;
-            pauseButton.disabled = true;
-            resumeButton.disabled = true;
-            circle.style.strokeDashoffset = 0;
-            display.textContent = "Focus session ended!";
-            if (!skipBreaks) {
-                alert("Focus session complete!");
-            }
+      // function startTimer(seconds) {
+      //   clearInterval(countdown);
+      //   const now = Date.now();
+      //   const then = now + seconds * 1000;
+
+      //   displayTimeLeft(seconds);
+      //   countdown = setInterval(() => {
+      //     const secondsLeft = Math.round((then - Date.now()) / 1000);
+      //     if (secondsLeft < 0) {
+      //       clearInterval(countdown);
+      //       updateProgress(seconds / 60);
+      //       document.getElementById("timer-status").textContent =
+      //         "Focus session completed!";
+      //       return;
+      //     }
+      //     displayTimeLeft(secondsLeft);
+      //   }, 1000);
+      // }
+      function startTimer(seconds) {
+        
+
+        clearInterval(countdown);
+        const now = Date.now();
+        const then = now + seconds * 1000;
+
+        displayTimeLeft(seconds);
+        const circumference = 2 * Math.PI * 90; // Circumference of the circle
+        document.querySelector(".timer-border-progress").style.strokeDasharray =
+          circumference;
+        document.querySelector(
+          ".timer-border-progress"
+        ).style.strokeDashoffset = circumference;
+
+        countdown = setInterval(() => {
+          if (isPaused) return;
+          const secondsLeft = Math.round((then - Date.now()) / 1000);
+          if (secondsLeft < 0) {
+            clearInterval(countdown);
+            updateProgress(seconds / 60);
+            document.getElementById("timer-status").textContent =
+              "Focus session completed!";
+            document.querySelector(
+              ".timer-border-progress"
+            ).style.strokeDashoffset = "0"; // Complete the border
             return;
+          }
+          displayTimeLeft(secondsLeft);
+
+          // Calculate progress
+          const progress = (seconds - secondsLeft) / seconds;
+          const offset = circumference * (1 - progress);
+          document.querySelector(
+            ".timer-border-progress"
+          ).style.strokeDashoffset = offset;
+        }, 1000);
+      }
+
+
+  
+
+
+
+      function displayTimeLeft(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainderSeconds = seconds % 60;
+        document.getElementById("minutes").textContent = minutes
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("seconds").textContent = remainderSeconds
+          .toString()
+          .padStart(2, "0");
+      }
+
+      function updateProgress(focusMinutes) {
+        let completedMinutes = parseInt(
+          document.getElementById("completed-minutes").textContent
+        );
+        completedMinutes += focusMinutes;
+        document.getElementById("completed-minutes").textContent =
+          completedMinutes;
+        document.getElementById("completed-time").textContent =
+          completedMinutes + " minutes";
+
+        let dailyGoal =
+          parseInt(document.getElementById("daily-goal").textContent) || 60;
+        let progress = (completedMinutes / dailyGoal) * 283;
+        document.getElementById("progress-circle").style.strokeDashoffset =
+          283 - progress;
+
+        if (completedMinutes >= dailyGoal) {
+          streak++;
+          document.getElementById("streak-days").textContent = streak + " days";
+        }
+      }
+
+      function openEditModal() {
+        document.getElementById("edit-modal").style.display = "block";
+      }
+
+      function closeEditModal() {
+        document.getElementById("edit-modal").style.display = "none";
+      }
+
+      function saveGoalSettings() {
+        let newGoal = parseInt(document.getElementById("goal-input").value);
+        document.getElementById("daily-goal").textContent =
+          newGoal + " minutes";
+        document.getElementById("edit-modal").style.display = "none";
+
+        if (document.getElementById("clear-progress").checked) {
+          document.getElementById("completed-minutes").textContent = "0";
+          document.getElementById("completed-time").textContent = "0 minutes";
+          document.getElementById(
+            "progress-circle"
+          ).style.strokeDashoffset = 283;
         }
 
-        if (!isPaused) {
-            remainingTime--; // Decrement remaining time
+        closeEditModal();
+      }
 
-            // Check for 2-minute mark
-            if (remainingTime === (focusTime * 60) - 120 && !skipBreaks) {
-                clearInterval(timerInterval); // Stop the timer
-                alert('Break time! You have 1 minute.');
-                setTimeout(() => {
-                    alert('Break ended. Resuming focus.');
-                    startFocusSession(); // Restart the focus session from where it left off
-                }, breakDuration * 1000); // Break duration in milliseconds
-                return; // Exit the current interval to stop decrementing during the break
-            }
+      function toggleTheme() {
+        const lightImage =
+          "https://images.unsplash.com/photo-1508962914676-134849a727f0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+        const darkImage =
+          "https://newrelic.com/sites/default/files/styles/16x9_1200w/public/2021-04/pomodoro-timer.webp?h=a68e76a0&itok=CaHc5Tzh";
+        isLightTheme = !isLightTheme;
+        if (isLightTheme) {
+          document.body.classList.add("light-theme");
+          document.body.style.backgroundImage = `url('${lightImage}')`;
 
-            updateDisplay(); // Update the displayed time
-            updateCircle(); // Update the circular progress
+          document.getElementById("theme-toggle").textContent =
+            "Switch to Dark Theme";
+        } else {
+          document.body.classList.remove("light-theme");
+          document.body.style.backgroundImage = `url('${darkImage}')`;
+
+          document.getElementById("theme-toggle").textContent =
+            "Switch to Light Theme";
         }
-    }, 1000);
-}
+      }
 
-// Function to pause the timer
-function pauseTimer() {
-    if (!isRunning || isPaused) return;
 
-    isPaused = true; // Set paused state to true
-    pauseButton.disabled = true; // Disable pause button
-    resumeButton.disabled = false; // Enable resume button
-}
+      function pauseTimer() {
+        isPaused = true;
+        // document.getElementById("pause-button").style.display = "none";
+        // document.getElementById("resume-button").style.display = "block";
+      }
 
-// Function to resume the timer
-function resumeTimer() {
-    if (!isRunning || !isPaused) return;
+      function resumeTimer() {
+        isPaused = false;
+        const remainingTime = parseInt(document.getElementById("minutes").textContent) * 60 + parseInt(document.getElementById("seconds").textContent);
+        timeLeft = remainingTime; // update timeLeft with the remaining time
+        startTimer(remainingTime);
+        
+        // document.getElementById("pause-button").style.display = "block";
+        // document.getElementById("resume-button").style.display = "none";
+      }
 
-    isPaused = false; // Set paused state to false
-    pauseButton.disabled = false; // Enable pause button
-    resumeButton.disabled = true; // Disable resume button
-}
+      function goBack() {
 
-// Function to reset the focus session
-function resetFocusSession() {
-    clearInterval(timerInterval); // Clear the timer interval
-    timerContainer.style.display = 'none'; // Hide the timer container
-    focusTimerElements.forEach(el => el.style.display = ''); // Show timer settings
+        timer.style.display = '';
+        
+        
+        // document.getElementById("pause-button").style.display = "block";
+        // document.getElementById("resume-button").style.display = "none";
+      }
 
-    remainingTime = 0; // Reset remaining time
-    isRunning = false; // Reset running state
-    isPaused = false; // Reset paused state
-    display.textContent = "00:00"; // Reset display
-    circle.style.strokeDashoffset = circumference; // Reset progress circle
-    pauseButton.disabled = true; // Disable pause button
-    resumeButton.disabled = true; // Disable resume button
-    breakInfo.textContent = "You’ll have no breaks"; // Reset break information
-}
 
-// Function to update the displayed time
-function updateDisplay() {
-    const mins = Math.floor(remainingTime / 60);
-    const secs = remainingTime % 60;
-    display.textContent = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
-}
 
-// Function to update the circular progress indicator
-function updateCircle() {
-    const offset = (remainingTime / (focusTime * 60)) * circumference;
-    circle.style.strokeDashoffset = offset;
-}
 
-// Function to change the focus time value
-function changeValue(delta) {
-    let currentValue = parseInt(focusTimeInput.value);
+      function changeValue(amount) {
+        let input = document.getElementById("time-input");
+        let newValue = parseInt(input.value) + amount;
+        if (newValue < parseInt(input.min)) {
+          newValue = parseInt(input.min);
+        }
+        input.value = newValue;
+      }
 
-    if (isNaN(currentValue)) {
-        currentValue = 10; // Default to 10 minutes if not a number
-    }
 
-    let newValue = currentValue + delta;
-
-    if (newValue < 1) {
-        newValue = 1; // Ensure minimum value is 1
-    }
-
-    focusTimeInput.value = newValue; // Update input value
-    calculateBreaks(); // Recalculate breaks
-}
-
-// Function to calculate the number of breaks
-function calculateBreaks() {
-    const focusTime = parseInt(focusTimeInput.value);
-    breaks = Math.floor(focusTime / 2); // Number of breaks based on focus time
-
-    const breakInfoText = breaks > 0
-        ? `You’ll have ${breaks} break${breaks > 1 ? 's' : ''} of ${breakDuration / 60} min each`
-        : "You’ll have no breaks";
-
-    breakInfo.textContent = breakInfoText; // Update break information text
-}
-
-// Event listeners for buttons
-startButton.addEventListener('click', startFocusSession);
-pauseButton.addEventListener('click', pauseTimer);
-resumeButton.addEventListener('click', resumeTimer);
-backButton.addEventListener('click', resetFocusSession);
-
-// Initial calculation of breaks based on default value
-calculateBreaks();

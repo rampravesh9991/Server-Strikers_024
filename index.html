@@ -1,58 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Focus Timer</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-    <div class="focus-timer">
-        <h2>Get Ready to Focus</h2>
-        <p>We’ll turn off notifications and app alerts during each session. For longer sessions, we’ll add a short break so you can recharge.</p>
-        
-        <div class="timer-setting">
-            <div class="num-border">
-                <div class="custom-number-input">
-                    <input type="number" id="focus-time" value="10" min="1">
-                    <div class="arrow-buttons">
-                        <button type="button" class="arrow-up" onclick="changeValue(1)">&#9650;</button>
-                        <button type="button" class="arrow-down" onclick="changeValue(-1)">&#9660;</button>
-                    </div>
-                </div>
+    <title>Focus Session</title>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="focus-session">
+        <button id="theme-toggle">Switch to Light Theme</button>
+        <!-- Moved theme toggle here -->
+
+        <h2 id="get-redy">Get ready to focus</h2>
+        <p>
+          We'll turn off notifications and app alerts during each session. For
+          longer sessions, we'll add a short break so you can recharge.
+        </p>
+        <div class="time-setting">
+          <div class="num-border">
+            <div
+              class="custom-number-input"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <!-- <label for="time-input">Time (mins):</label> -->
+              <input type="number" id="time-input" value="10" min="1" />
+              <div class="arrow-buttons">
+                <button type="button" class="arrow-up" onclick="changeValue(1)">
+                  &#9650;
+                </button>
+                <button
+                  type="button"
+                  class="arrow-down"
+                  onclick="changeValue(-1)"
+                >
+                  &#9660;
+                </button>
+              </div>
             </div>
-            <span class="mins-label">mins</span>
+          </div>
+          <p style="text-align: center">Time (mins)</p>
         </div>
-        
-        <p id="break-info">You’ll have no breaks</p>
-        
-        <div class="checkbox">
-            <input type="checkbox" id="skip-breaks">
-            <label for="skip-breaks">Skip breaks</label>
+        <div class="break-setting">
+          <input type="checkbox" id="skip-breaks" />
+          <label for="skip-breaks">Skip breaks</label>
         </div>
-        
-        <button id="start-button">Start Focus Session</button>
-        
-        <div class="timer-container" id="timer-container">
-            <div class="timer-circle-container">
-                <svg class="progress-ring" width="120" height="120">
-                    <circle class="progress-ring__circle-bg" stroke="#e0e0e0" stroke-width="10" fill="transparent" r="54" cx="60" cy="60"/>
-                    <circle class="progress-ring__circle" stroke="#0078d4" stroke-width="10" fill="transparent" r="54" cx="60" cy="60"/>
-                </svg>
-                <div class="time-display" id="time-display">00:00</div>
+        <button id="start-button">Start focus session</button>
+        <!-- <div class="timer">
+                        
+                      <div class="flip-clock-wrapper" style="background-color: red;">
+                        <div id="minutes" class="flip-clock__piece">00</div>
+                        <span>:</span>
+                        <div id="seconds" class="flip-clock__piece">00</div>
+                      </div>
+                      <p id="timer-status">Focus Session</p>
+                    </div> -->
+
+        <div class="timer" id="timer">
+          <svg class="timer-border" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="80" class="timer-border-bg"></circle>
+            <circle
+              cx="100"
+              cy="100"
+              r="80"
+              class="timer-border-progress"
+            ></circle>
+          </svg>
+
+          <div class="flip-clock-wrapper">
+            <div id="minutes" class="flip-clock__piece">00</div>
+            <span>:</span>
+            <div id="seconds" class="flip-clock__piece">00</div>
+          </div>
+          <p id="timer-status">Focus Session</p>
+          <div class="timer-controls">
+            <button id="pause-button" class="control-button">⏸</button>
+            <div class="back-container">
+                <button id="back-button" class="control-button"><i class="fa-solid fa-arrow-left"></i></button>
+                <span class="tooltip">Back to reset timer</span>
             </div>
-            <div class="timer-controls">
-                <button id="pause-button" class="control-button">⏸</button>
-                <div class="back-container">
-                    <button id="back-button" class="control-button"><i class="fa-solid fa-arrow-left"></i></button>
-                    <span class="tooltip">Back to reset timer</span>
-                </div>
-                <button id="resume-button" class="control-button">▶️</button>
-            </div>
+            <button id="resume-button" class="control-button">▶️</button>
         </div>
+        </div>
+      </div>
+
+      <div class="daily-progress">
+        <h2>
+          Daily progress
+          <span class="edit-icon" id="edit-goal">&#9998;</span>
+        </h2>
+        <div class="progress-circle">
+          <svg>
+            <circle cx="50" cy="50" r="45"></circle>
+            <circle cx="50" cy="50" r="45" id="progress-circle"></circle>
+          </svg>
+          <div class="progress-text">
+            <p><span id="completed-minutes">0</span> minutes</p>
+          </div>
+        </div>
+        <div id="progress-data">
+          <p>Daily goal: <span id="daily-goal">0 min</span></p>
+          <p>Completed: <span id="completed-time">0 minutes</span></p>
+          <p>Streak: <span id="streak-days">0 days</span></p>
+        </div>
+      </div>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <div id="edit-modal" class="modal">
+      <div class="modal-content">
+        <h2>Edit Your Goal</h2>
+        <div class="goal-setting">
+          <label for="goal-input">Daily Goal (mins):</label>
+          <input type="number" id="goal-input" min="1" />
+        </div>
+        <div class="modal-buttons">
+          <button id="save-button">Save</button>
+          <button id="cancel-button">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js">
+
+
+    </script>
+  </body>
 </html>
