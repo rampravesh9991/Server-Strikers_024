@@ -1,6 +1,9 @@
 let midBar = document.querySelector("#midBar228");
 midBar.style.minWidth = "600px";
 
+//making sure every task div has unique id
+let taskCounter = 0;
+
 //today layout
 let today = document.querySelector("#today228");
 today.style.cursor = "pointer";
@@ -115,6 +118,7 @@ function displayToday(){
         if(event.key == "Enter"){
             let value = this.value;
             createNewTask(value);
+            this.value = "";
         }
     })
     newTask.style.width = "100%";
@@ -156,10 +160,12 @@ function displayToday(){
     h3High.style.marginTop = "10px";
     midBar.append(h3High);
 
+    //this is where i will store all high priority task
     let highDiv = document.createElement("div");
+    highDiv.id = "highPriority";
     highDiv.style.border = "1px solid black";
     highDiv.style.width = "100%";
-    highDiv.style.marginTop = "10px"
+    highDiv.style.marginTop = "10px";
     midBar.append(highDiv);
 
     //medium priority
@@ -168,7 +174,9 @@ function displayToday(){
     h3Mid.style.marginTop = "10px";
     midBar.append(h3Mid);
 
+    //this is where i will store all mid priority task
     let midDiv = document.createElement("div");
+    midDiv.id = "mediumPriority";
     midDiv.style.border = "1px solid black";
     midDiv.style.width = "100%";
     midDiv.style.marginTop = "10px"
@@ -180,7 +188,9 @@ function displayToday(){
     h3Low.style.marginTop = "10px";
     midBar.append(h3Low);
 
+    //this is where i will store all low priority task
     let lowDiv = document.createElement("div");
+    lowDiv.id = "lowPriority";
     lowDiv.style.border = "1px solid black";
     lowDiv.style.width = "100%";
     lowDiv.style.marginTop = "10px"
@@ -192,7 +202,9 @@ function displayToday(){
     h3Nop.style.marginTop = "10px";
     midBar.append(h3Nop);
 
+    //this is where i will store all no priority task
     let noDiv = document.createElement("div");
+    noDiv.id = "noPriority";
     noDiv.style.border = "1px solid black";
     noDiv.style.width = "100%";
     noDiv.style.marginTop = "10px"
@@ -201,37 +213,81 @@ function displayToday(){
 displayToday();
 
 //Creating new Task
+//all elements are created after displayToday() function, now access it.
+//but all new task is going to be first store in no priority task
 //high priority  : highDiv
-let highTask = document.createElement("div");
-highDiv.append(highTask);
+let highBox = document.querySelector("#highPriority");
 //medium priority : midDiv
-let mediumTask = document.createElement("div");
-midDiv.append(mediumTask);
+let mediumBox = document.querySelector("#mediumPriority");
 //low priority : lowDiv
-let lowTask = document.createElement("div");
-lowDiv.append(lowTask);
+let lowBox = document.querySelector("#lowPriority");
 //No priority : noDiv
-let noTask = document.createElement("div");
-noDiv.append(noTask);
-
+let noBox = document.querySelector("#noPriority");
 
 function createNewTask(value){
 
     //task container
     let divBox = document.createElement("div");
+    divBox.style.border = "1px solid black";
+    divBox.style.display = "flex";
+    divBox.style.justifyContent = "space-between";
+    divBox.style.alignItems = "center";
+    divBox.style.cursor = "pointer";
 
     //child1 will containe play button and task name
     let child1 = document.createElement("div");
+    child1.style.border = "1px solid black";
+    child1.style.width = "100%";
+    child1.style.height = "40px";
+    child1.style.display = "flex";
+    child1.style.alignItems= "center";
+
+    //for confirming if task is completed or not
     let status = document.createElement("div");
+    status.id = `ram${taskCounter++}`;
+    status.style.top = "1px";
+    status.addEventListener("click",()=>{
+        console.log("task is completed");
+        console.log(this.event);
+        document.querySelector(`#${this.event.target.id}`).style.backgroundColor = "green"; 
+        // this.style.backgroundColor = "green";
+    })
     status.style.width = "20px";
     status.style.height = "20px";
+    status.style.border = "1px solid black";
     status.style.borderRadius = "50%";
+    status.style.marginLeft = "5px";
 
-    child1.append(status);
+    //for auto playing timer for particular task
+    let doThisTask = document.createElement("div");
+    doThisTask.style.width = "20px";
+    doThisTask.style.height = "20px";
+    doThisTask.style.border = "1px solid green";
+    doThisTask.style.borderRadius = "50%";
+    doThisTask.style.marginLeft = "5px";
+    doThisTask.style.display = "flex";
+    doThisTask.style.justifyContent = "center";
+    doThisTask.style.alignItems = "center";
+    doThisTask.style.backgroundColor = "green";
+
+    let doThisSpan = document.createElement("span");
+    doThisSpan.className = "material-symbols-outlined";
+    doThisSpan.innerText ="play_arrow";
+    doThisSpan.style.color ="black";
+    doThisTask.append(doThisSpan);
+
+    let taskName = document.createElement("p");
+    taskName.innerText = value;
+    taskName.style.marginLeft = "10px";
+
+    child1.append(status,doThisTask, taskName);
 
     //child2  will contain date and timetaken
     let child2 = document.createElement("div");
+    child2.style.border = "1px solid black";
+    child2.innerText = "31Aug";
+    child2.style.marginRight = "10px"
 
-    divBox.append(child1);
-    noTask.append(divBox);
+    divBox.append(child1,child2);
+    noBox.append(divBox);
 }
