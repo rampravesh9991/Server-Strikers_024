@@ -1,3 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+.card-container {
+    will-change: transform;
+    transition: transform 0.4s ease-out;
+}
+
+.card {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    will-change: transform, filter;
+}
+
+#circle::after,
+#circle::before {
+    will-change: transform;
+    transition: transform 0.5s ease-in-out;
+}
+
+.testimonials-section {
+    scrollbar-width: thin;
+    scrollbar-color: #333 #e0e0e0;
+}
+
+.testimonials-section::-webkit-scrollbar {
+    display: none;
+}
+
+.feature {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.about-grid-item {
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+    will-change: transform, opacity;
+}
+
+.about-grid-item img {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.about-grid-item:hover img {
+    transform: scale(1.1);
+}
+
+#preview {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    will-change: transform;
+}
+
+.button-gradient {
+    transition: background-color 0.3s ease-out, transform 0.3s ease-out;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -5,6 +62,7 @@ body {
     background-color: #f4f4f4;
     overflow-x: hidden;
 }
+
 
 /* Navbar */
 .navbar {
@@ -18,11 +76,6 @@ body {
     top: 0;
     z-index: 111111;
     transition: background-color 0.3s ease;
-
-}
-
-.navbar.scrolled {
-    background-color: #000;
 }
 
 .navbar .logo img {
@@ -52,7 +105,7 @@ body {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 100vh;
+    height: 140vh;
     overflow: hidden;
     animation: fadeIn 1s ease-in-out;
     background-color: black;
@@ -61,14 +114,14 @@ body {
 
 #hero-video {
     position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: blur(5px);
-        opacity: 0.5;
-        z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px);
+    opacity: 0.5;
+    z-index: -1;
 }
 
 .hero-overlay {
@@ -80,13 +133,10 @@ body {
     background: rgba(0, 0, 0, 0.5);
     z-index: -1;
 }
+
 .hero-text {
     position: relative;
     color: #fff;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 30px;
     height: 100vh;
     flex-direction: column;
@@ -95,21 +145,26 @@ body {
     animation: fadeInUp 1s ease-out;
 }
 
+.card {
+    margin: 15px;
+}
+
 .hero-text h1 {
-    font-size: 4em;
-    font-weight: 800;
-    margin: 0;
+    font-size: 1em;
+    margin-left: 40px;
     animation: slideUp 1s ease-out;
 }
 
 .hero-text p {
-    font-size: 1.2em;
-    margin: 20px 0;
+    font-size: 12.2em;
+    text-transform: uppercase;
+    letter-spacing: -15px;
+    word-spacing: -50px;
+    font-family: "Roboto Mono", monospace;
 }
 
 .hero-text .cta-button {
     margin-top: 20px;
-    
 }
 
 .cta-button {
@@ -118,8 +173,150 @@ body {
     padding: 10px 20px;
     width: 20%;
     border-radius: 5px;
-    text-decoration: none;
-    
+}
+
+#benefits {
+    background-color: #f4f4f4;
+}
+
+#circle {
+    height: 250vh;
+    position: relative;
+    left: -300px;
+    width: 150%;
+    border-radius: 100%;
+    overflow: hidden;
+    display: flex;
+    padding-top: 80px;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(205, 225, 232);
+}
+
+
+/* General card styles */
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 400px;
+}
+
+/* Each card style */
+.card {
+    width: 300px;
+    height: 500px;
+    position: absolute;
+    border: 2px solid white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* GIF Style */
+.card-gif {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+/* Transform effects for each card */
+.left-card {
+    transform: rotate(-10deg) translateX(-250px) translateY(30px);
+    z-index: 1;
+
+}
+
+.center-card {
+    transform: rotate(0deg) translateY(-20px);
+    z-index: 2;
+}
+
+.right-card {
+    transform: rotate(10deg) translateX(250px) translateY(30px);
+    z-index: 0;
+}
+
+/* Center card hover effect */
+.active {
+    transform: scale(1.05);
+}
+
+
+/* Hover to play GIF */
+.card:not(.active) .card-gif {
+    filter: grayscale(100%);
+}
+
+.card:hover .card-gif {
+    filter: none;
+}
+
+
+
+/* Circle after */
+#circle::after {
+    content: '';
+    height: 700px;
+    width: 40%;
+    border-radius: 50%;
+    background-color: #bfcdd7;
+    position: absolute;
+    top: -100px;
+    overflow: hidden;
+    animation: shake 3s infinite ease-in-out;
+    transform-origin: 50% 50%;
+}
+
+/* Circle before */
+#circle::before {
+    content: '';
+    height: 460px;
+    width: 25%;
+    border-radius: 50%;
+    background-color: #e49366;
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    overflow: hidden;
+    animation: shake 3s infinite ease-in-out;
+    transform-origin: 50% 50%;
+}
+
+/* Keyframes for shaking effect */
+@keyframes shake {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(5px, -5px);
+    }
+
+    50% {
+        transform: translate(0, 5px);
+    }
+
+    75% {
+        transform: translate(-5px, 0);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* Add scroll event to trigger the animation */
+
+.images {
+    height: 300px;
+    width: 300px;
+    margin-left: 20px;
 }
 
 
@@ -167,14 +364,12 @@ body {
 
 /* Testimonials Section */
 .testimonials-section {
-    
     background: linear-gradient(transparent, black);
     padding: 60px 20px;
     text-align: center;
     max-height: 600px;
     overflow-y: auto;
     position: relative;
-    
     animation: fadeIn 1s ease-in-out;
     scrollbar-width: thin;
     scrollbar-color: #333 #e0e0e0;
@@ -182,7 +377,7 @@ body {
 
 .testimonials-section::-webkit-scrollbar {
     width: 0px;
-    display:  none;
+    display: none;
 }
 
 .testimonials-section::-webkit-scrollbar-track {
@@ -207,7 +402,7 @@ body {
     font-family: sans-serif;
     font-size: 40px;
     font-weight: 800;
-    
+
 }
 
 /* Testimonials Container */
@@ -218,6 +413,7 @@ body {
     padding: 0 10px;
     width: 50%;
     margin: auto;
+
 }
 
 .testimonial {
@@ -270,14 +466,15 @@ body {
 .testimonial.slide-in-right {
     animation: slideInRight 0.8s ease-out forwards;
 }
+
 /* Call to Action Section */
 .cta-section {
     color: #fff;
     padding: 60px 20px;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
-    background: linear-gradient( black, transparent);
-    
+    background: linear-gradient(black, transparent);
+
 }
 
 .button-gradient {
@@ -294,14 +491,22 @@ body {
     transform: scale(1.05);
 }
 
-
+/* Pomodore Preview*/
+#preview {
+    background-color: #f4f4f4;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 60px 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
 
 
 /* About Section with Image Grid and Scroll Animation */
 .about-section {
     padding: 60px 20px;
     background-color: #f4f4f4;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -387,8 +592,9 @@ body {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 12px;
+    width: none;
     height: 12px;
+    display: none;
 }
 
 ::-webkit-scrollbar-track {
@@ -455,4 +661,117 @@ body {
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+/* About Section */
+#aboutSection {
+    background-color: #f4f4f4;
+    height: auto;
+    padding: 50px 70px;
+
+
+
+}
+
+#aboutSection h1 {
+    font-size: 4em;
+    text-align: center;
+    box-sizing: border-box;
+    letter-spacing: -2px;
+    font-weight: 700;
+
+
+
+
+}
+
+.cardsDiv {
+    position: relative;
+    height: 200vh;
+    perspective: 1000px;
+    box-sizing: border-box;
+
+}
+
+.developer {
+    height: 400px;
+    width: 300px;
+    border: 1px solid black;
+    border-radius: 10px;
+    position: absolute;
+    background: linear-gradient(#257995, black);
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+
+
+}
+
+.card-front,
+.card-back {
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    color: white;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.developer .card-back {
+    transform: rotateY(180deg);
+
+
+}
+
+.card-back img {
+    border-radius: 10px;
+    background-color: white;
+    filter: grayscale(100%);
+    transition: filter 0.3s, mask-position 1s ease-out;
+    mask-image: linear-gradient(to bottom, grayscale(50%), transparent 100%);
+    mask-position: 0% 100%;
+    mask-size: 100% 200%;
+}
+
+.card-back img:hover {
+    filter: grayscale(0%);
+    mask-position: 0% 0%;
+}
+
+.developer.flipped {
+    transform: rotateY(180deg);
+}
+
+.developer .card-front h3 {
+    color: #f4f4f4;
+    font-size: 1.8rem;
+}
+
+.developerName-1 {
+    left: 60px;
+    top: 100px;
+
+}
+
+.developerName-2 {
+    right: 60px;
+    top: 100px;
+}
+
+.developerName-3 {
+    left: 37%;
+    top: 34%;
+
+}
+
+.developerName-4 {
+    right: 60px;
+    bottom: 50px;
+}
+
+.developerName-5 {
+    left: 60px;
+    bottom: 50px;
 }

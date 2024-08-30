@@ -8,29 +8,49 @@ let updateTime = () => {
 };
 setInterval(updateTime, 1000);
 
-let dynamic=document.getElementById('dynamic')
-document.getElementById('btn').addEventListener('click',()=>{
-  let a=prompt('Add your Task: ')
-  let head=document.createElement('h1')
-  head.style.color='white'
-  head.textContent=`Task: ${a}`
-  dynamic.append(head)
-  document.getElementById('d1').style.display='none'
+document
+  .querySelector(".developerName-1")
+  .addEventListener("click", function () {
+    this.classList.toggle("flipped");
+  });
+document
+  .querySelector(".developerName-2")
+  .addEventListener("click", function () {
+    this.classList.toggle("flipped");
+  });
+document
+  .querySelector(".developerName-3")
+  .addEventListener("click", function () {
+    this.classList.toggle("flipped");
+  });
+document
+  .querySelector(".developerName-4")
+  .addEventListener("click", function () {
+    this.classList.toggle("flipped");
+  });
+document
+  .querySelector(".developerName-5")
+  .addEventListener("click", function () {
+    this.classList.toggle("flipped");
+  });
 
-})
-window.addEventListener('scroll', function() {
-      const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) { 
-        navbar.classList.add('scrolled');  
-    } else {
-        navbar.classList.remove('scrolled');  
-    }
+function checkTasks() {
+  if (dynamic.childElementCount === 0) {
+    d1.style.display = "flex";
+  }
+}
+window.addEventListener("scroll", function () {
+  const navbar = document.querySelector(".navbar");
+  if (window.scrollY > 50) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
 });
 
 window.addEventListener("scroll", function () {
   let elements = document.querySelectorAll(".about-grid-item");
   let screenHeight = window.innerHeight;
-
   elements.forEach((element) => {
     let position = element.getBoundingClientRect().top;
     if (position < screenHeight) {
@@ -59,4 +79,14 @@ window.addEventListener("scroll", function () {
   });
 });
 
+window.addEventListener("scroll", () => {
+  let circle = document.querySelector("#circle");
+  let position = circle.getBoundingClientRect().top;
+  let windowHeight = window.innerHeight;
 
+  if (position < windowHeight) {
+    circle.classList.add("animate");
+  } else {
+    circle.classList.remove("animate");
+  }
+});
