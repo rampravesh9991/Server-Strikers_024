@@ -165,6 +165,7 @@ document.getElementById("back-button").addEventListener("click", goBack);
       }
 
       function toggleTheme() {
+        const body = document.body;
         const lightImage =
           "https://images.unsplash.com/photo-1508962914676-134849a727f0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
         const darkImage =
@@ -173,16 +174,21 @@ document.getElementById("back-button").addEventListener("click", goBack);
         if (isLightTheme) {
           document.body.classList.add("light-theme");
           document.body.style.backgroundImage = `url('${lightImage}')`;
+          body.classList.add('blurred');
 
           document.getElementById("theme-toggle").textContent =
             "Switch to Dark Theme";
         } else {
           document.body.classList.remove("light-theme");
           document.body.style.backgroundImage = `url('${darkImage}')`;
+          body.classList.add('blurred');
 
           document.getElementById("theme-toggle").textContent =
             "Switch to Light Theme";
         }
+       
+
+      
       }
 
 
@@ -222,5 +228,8 @@ document.getElementById("back-button").addEventListener("click", goBack);
         }
         input.value = newValue;
       }
+
+
+
 
 
