@@ -2,6 +2,7 @@ let midBar = document.querySelector("#midBar228");
 midBar.style.minWidth = "600px";
 
 //making sure every task div has unique id
+//everytime i am doing count++ its value is changing - it's like a id
 let taskCounter = 0;
 
 //today layout
@@ -117,7 +118,9 @@ function displayToday(){
     newTask.addEventListener("keydown",function(event){
         if(event.key == "Enter"){
             let value = this.value;
-            createNewTask(value);
+            if(value.length > 0){
+                createNewTask(value);
+            }
             this.value = "";
         }
     })
@@ -209,6 +212,27 @@ function displayToday(){
     noDiv.style.width = "100%";
     noDiv.style.marginTop = "10px"
     midBar.append(noDiv);
+
+    //completed task should be shown here
+    let finishedTask = document.createElement("h3");
+    finishedTask.innerText = "Completed";
+    finishedTask.style.marginTop = "10px";
+    midBar.append(finishedTask);
+
+    let completedTaskDiv = document.createElement("div");
+    completedTaskDiv.id = "completed";
+    completedTaskDiv.style.border = "1px solid black";
+    completedTaskDiv.style.width = "100%";
+    completedTaskDiv.style.marginTop = "10px"
+    midBar.append(completedTaskDiv);
+
+
+    //just want some space in the midbar bottom [too much task]
+    let createSpace = document.createElement("div");
+    createSpace.style.width = "100%";
+    createSpace.style.marginTop = "10px"
+    createSpace.style.marginBottom = "200px";
+    midBar.append(createSpace);
 }
 displayToday();
 
@@ -228,7 +252,12 @@ function createNewTask(value){
 
     //task container
     let divBox = document.createElement("div");
+    divBox.id = `ram${taskCounter++}`;
+    // divBox.addEventListener("click", ()=>{
+
+    // })
     divBox.style.border = "1px solid black";
+    divBox.style.height = "40px";
     divBox.style.display = "flex";
     divBox.style.justifyContent = "space-between";
     divBox.style.alignItems = "center";
@@ -237,19 +266,21 @@ function createNewTask(value){
     //child1 will containe play button and task name
     let child1 = document.createElement("div");
     child1.style.border = "1px solid black";
-    child1.style.width = "100%";
-    child1.style.height = "40px";
+    child1.style.width = "60px";
+    child1.style.height = "100%";
     child1.style.display = "flex";
     child1.style.alignItems= "center";
 
     //for confirming if task is completed or not
+    //issue - id is definately not unique -------------- @@@$$$
+    //i just need to keep the counter updated in the server as well
     let status = document.createElement("div");
-    status.id = `ram${taskCounter++}`;
+    status.className = `ram${taskCounter}`;
     status.style.top = "1px";
     status.addEventListener("click",()=>{
         console.log("task is completed");
         console.log(this.event);
-        document.querySelector(`#${this.event.target.id}`).style.backgroundColor = "green"; 
+        document.querySelector(`.${this.event.target.className}`).style.backgroundColor = "green"; 
         // this.style.backgroundColor = "green";
     })
     status.style.width = "20px";
@@ -276,18 +307,70 @@ function createNewTask(value){
     doThisSpan.style.color ="black";
     doThisTask.append(doThisSpan);
 
-    let taskName = document.createElement("p");
-    taskName.innerText = value;
-    taskName.style.marginLeft = "10px";
+    let taskNameDiv = document.createElement("div");
+    taskNameDiv.className = `ram${taskCounter}`;
+    taskNameDiv.addEventListener("click", ()=>{
+        console.log(this.event.target.className);
+        taskDetails(this.event.target.className);
+    })
+    taskNameDiv.style.display = "flex";
+    taskNameDiv.style.alignItems = "center";
+    taskNameDiv.style.width = "90%";
+    taskNameDiv.style.height = "100%";
+    taskNameDiv.style.border = "1px solid black";
 
-    child1.append(status,doThisTask, taskName);
+    let taskName = document.createElement("p");
+    taskName.style.marginLeft = "5px";
+    taskName.innerText = value;
+
+    taskNameDiv.append(taskName);
+    
+
+    child1.append(status,doThisTask);
 
     //child2  will contain date and timetaken
     let child2 = document.createElement("div");
+    child2.className = `ram${taskCounter}`;
     child2.style.border = "1px solid black";
+    child2.style.height = "100%";
+    child2.style.display = "flex";
+    child2.style.alignItems = "center";
     child2.innerText = "31Aug";
-    child2.style.marginRight = "10px"
+    child2.style.padding = "10px"
 
-    divBox.append(child1,child2);
+    divBox.append(child1, taskNameDiv, child2);
     noBox.append(divBox);
+}
+
+//now when user click on particular task, i got the id
+//id == class : for task
+//task name = id > div : 2nd child > p
+
+let endBar = document.querySelector("#endBar228 > div");
+endBar.style.display = "flex";
+endBar.style.flexDirection = "column";
+endBar.style.justifyContent = "space-between";
+
+//top section - endBar
+let endBarBox1 = document.createElement("div");
+endBarBox1.style.border = "1px solid black";
+endBarBox1.style.width = "100%";
+endBarBox1.style.minHeight = "470px";
+
+//bottom section - endbar
+let endBarBox2 = document.createElement("div");
+endBarBox2.style.borderTop = "1px solid black";
+endBarBox2.style.width = "100%";
+endBarBox2.style.minHeight = "50px";
+
+endBar.append(endBarBox1, endBarBox2);
+
+function taskDetails(taskClass){
+    let taskName = document.querySelector(`.${taskClass}>p`).innerText;
+    console.log(taskName);
+
+    //array of all the task siblings which contains data
+    let siblings = document.querySelectorAll(`.${taskClass}`);
+
+    console.log(siblings);
 }
