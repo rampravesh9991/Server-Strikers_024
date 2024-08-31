@@ -1,5 +1,4 @@
 let midBar = document.querySelector("#midBar228");
-midBar.style.minWidth = "600px";
 
 //making sure every task div has unique id
 //everytime i am doing count++ its value is changing - it's like a id
@@ -20,6 +19,7 @@ function displayToday() {
 
   //status div
   let statsDiv = document.createElement("div");
+  statsDiv.style.top = "1";
   statsDiv.id = "statusDiv";
   statsDiv.style.border = "1px solid black"; //important
   statsDiv.style.width = "100%";
@@ -162,7 +162,8 @@ function displayToday() {
   //this is where i will store all high priority task
   let highDiv = document.createElement("div");
   highDiv.id = "highPriority";
-  highDiv.style.border = "1px solid black";
+  // highDiv.style.border = "1px solid black";
+  highDiv.style.marginBottom = "10px";
   highDiv.style.width = "100%";
   highDiv.style.marginTop = "10px";
   midBar.append(highDiv);
@@ -176,7 +177,8 @@ function displayToday() {
   //this is where i will store all mid priority task
   let midDiv = document.createElement("div");
   midDiv.id = "mediumPriority";
-  midDiv.style.border = "1px solid black";
+  // midDiv.style.border = "1px solid black";
+  midDiv.style.marginBottom = "10px";
   midDiv.style.width = "100%";
   midDiv.style.marginTop = "10px";
   midBar.append(midDiv);
@@ -190,7 +192,8 @@ function displayToday() {
   //this is where i will store all low priority task
   let lowDiv = document.createElement("div");
   lowDiv.id = "lowPriority";
-  lowDiv.style.border = "1px solid black";
+  // lowDiv.style.border = "1px solid black";
+  lowDiv.style.marginBottom = "10px";
   lowDiv.style.width = "100%";
   lowDiv.style.marginTop = "10px";
   midBar.append(lowDiv);
@@ -204,7 +207,8 @@ function displayToday() {
   //this is where i will store all no priority task
   let noDiv = document.createElement("div");
   noDiv.id = "noPriority";
-  noDiv.style.border = "1px solid black";
+  // noDiv.style.border = "1px solid black";
+  noDiv.style.marginBottom = "10px";
   noDiv.style.width = "100%";
   noDiv.style.marginTop = "10px";
   midBar.append(noDiv);
@@ -217,7 +221,8 @@ function displayToday() {
 
   let completedTaskDiv = document.createElement("div");
   completedTaskDiv.id = "completed";
-  completedTaskDiv.style.border = "1px solid black";
+  // completedTaskDiv.style.border = "1px solid black";
+  completedTaskDiv.style.marginBottom = "10px";
   completedTaskDiv.style.width = "100%";
   completedTaskDiv.style.marginTop = "10px";
   midBar.append(completedTaskDiv);
@@ -230,6 +235,24 @@ function displayToday() {
   midBar.append(createSpace);
 }
 displayToday();
+// midBar.addEventListener("click", function(event){
+//   let elem1 = document.getElementById("statusDiv");
+//   let elem2 = document.getElementById("addTask");
+//   let elem3 = document.getElementById("highPriority");
+//   let elem4 = document.getElementById("mediumPriority"); 
+//   let elem5 = document.getElementById("lowPriority");
+//   let elem6 = document.getElementById("completed");
+
+//   if((event.target != elem1)&&(event.target != elem2)&&
+//   (event.target != elem3)&&(event.target != elem4)&&
+//   (event.target != elem5)&&(event.target != elem6)){
+//     console.log("hello");
+//     let endbarHide = document.getElementById("endBar228");
+//     endbarHide.style.display = "none";
+//     midBar.style.width = "100%";
+
+//   }
+// })
 
 //Creating new Task
 //all elements are created after displayToday() function, now access it.
@@ -256,10 +279,11 @@ function createNewTask(value) {
   divBox.style.justifyContent = "space-between";
   divBox.style.alignItems = "center";
   divBox.style.cursor = "pointer";
+  divBox.style.borderRadius = "10px";
 
   //child1 will containe play button and task name
   let child1 = document.createElement("div");
-  child1.style.border = "1px solid black";
+  // child1.style.border = "1px solid black";
   child1.style.width = "60px";
   child1.style.height = "100%";
   child1.style.display = "flex";
@@ -281,7 +305,7 @@ function createNewTask(value) {
   });
   status.style.width = "20px";
   status.style.height = "20px";
-  status.style.border = "1px solid black";
+  status.style.border = "1px solid black"; //important
   status.style.borderRadius = "50%";
   status.style.marginLeft = "5px";
 
@@ -313,7 +337,7 @@ function createNewTask(value) {
   taskNameDiv.style.alignItems = "center";
   taskNameDiv.style.width = "90%";
   taskNameDiv.style.height = "100%";
-  taskNameDiv.style.border = "1px solid black";
+  // taskNameDiv.style.border = "1px solid black";
 
   let taskName = document.createElement("p");
   taskName.style.marginLeft = "5px";
@@ -326,7 +350,7 @@ function createNewTask(value) {
   //child2  will contain date and timetaken
   let child2 = document.createElement("div");
   child2.className = `ram${taskCounter}`;
-  child2.style.border = "1px solid black";
+  // child2.style.border = "1px solid black";
   child2.style.height = "100%";
   child2.style.display = "flex";
   child2.style.alignItems = "center";
@@ -346,22 +370,8 @@ endBar.style.display = "flex";
 endBar.style.flexDirection = "column";
 endBar.style.justifyContent = "space-between";
 
-//top section - endBar
-let endBarBox1 = document.createElement("div");
-endBarBox1.style.border = "1px solid black";
-endBarBox1.style.width = "100%";
-endBarBox1.style.height = "100%";
-endBarBox1.style.minHeight = "470px";
-
-//bottom section - endbar
-let endBarBox2 = document.createElement("div");
-endBarBox2.style.borderTop = "1px solid black";
-endBarBox2.style.width = "100%";
-endBarBox2.style.minHeight = "50px";
-
-endBar.append(endBarBox1, endBarBox2);
-
 function taskDetails(taskClass) {
+  endBar.innerHTML = "";
   let Tname = document.querySelector(`.${taskClass}>p`).innerText;
   console.log(Tname);
 
@@ -370,13 +380,28 @@ function taskDetails(taskClass) {
 
   console.log(siblings);
 
+  //top section - endBar
+  let endBarBox1 = document.createElement("div");
+  // endBarBox1.style.border = "1px solid black";
+  endBarBox1.style.width = "100%";
+  endBarBox1.style.height = "100%";
+  endBarBox1.style.minHeight = "470px";
+
+  //bottom section - endbar
+  let endBarBox2 = document.createElement("div");
+  endBarBox2.style.borderTop = "1px solid black"; //important
+  endBarBox2.style.width = "100%";
+  endBarBox2.style.minHeight = "50px";
+
+  endBar.append(endBarBox1, endBarBox2);
+
   //task container
   let divBox = document.createElement("div");
   divBox.id = `ram${taskCounter++}`;
   // divBox.addEventListener("click", ()=>{
 
   // })
-  divBox.style.border = "1px solid black";
+  // divBox.style.border = "1px solid black";
   divBox.style.height = "40px";
   divBox.style.display = "flex";
   divBox.style.justifyContent = "space-between";
@@ -385,7 +410,7 @@ function taskDetails(taskClass) {
 
   //child1 will containe play button and task name
   let child1 = document.createElement("div");
-  child1.style.border = "1px solid black";
+  // child1.style.border = "1px solid black";
   child1.style.width = "60px";
   child1.style.height = "100%";
   child1.style.display = "flex";
@@ -407,7 +432,7 @@ function taskDetails(taskClass) {
   });
   status.style.width = "20px";
   status.style.height = "20px";
-  status.style.border = "1px solid black";
+  status.style.border = "1px solid black"; //require
   status.style.borderRadius = "50%";
   status.style.marginLeft = "5px";
 
@@ -435,10 +460,10 @@ function taskDetails(taskClass) {
   taskNameDiv.style.alignItems = "center";
   taskNameDiv.style.width = "90%";
   taskNameDiv.style.height = "100%";
-  taskNameDiv.style.border = "1px solid black";
+  // taskNameDiv.style.border = "1px solid black";
 
   let taskName = document.createElement("p");
-  taskName.style.marginLeft = "5px";
+  taskName.style.marginLeft = "15px";
   taskName.innerText = Tname;
 
   taskNameDiv.append(taskName);
@@ -448,7 +473,7 @@ function taskDetails(taskClass) {
   //child2  will contain date and timetaken
   let child2 = document.createElement("div");
   child2.className = `ram${taskCounter}`;
-  child2.style.border = "1px solid black";
+  // child2.style.border = "1px solid black";
   child2.style.height = "100%";
   child2.style.display = "flex";
   child2.style.alignItems = "center";
@@ -456,26 +481,26 @@ function taskDetails(taskClass) {
   let flagSpan = document.createElement("span");
   flagSpan.className = "material-symbols-outlined";
   flagSpan.innerText = "flag";
-  child2.append(flagSpan)
+  child2.append(flagSpan);
 
   let horizonLine = document.createElement("hr");
   horizonLine.style.marginTop = "30px";
-  horizonLine.style.marginBottom = "30px";
+  // horizonLine.style.marginBottom = "10px";
 
   divBox.append(child1, taskNameDiv, child2);
 
   //------------Pomodoro
   let pomodoroDiv = document.createElement("div");
-  pomodoroDiv.style.border = "1px solid black";
+  // pomodoroDiv.style.border = "1px solid black";
   pomodoroDiv.style.width = "100%";
   pomodoroDiv.style.height = "40px";
   pomodoroDiv.style.display = "flex";
   pomodoroDiv.style.justifyContent = "space-between";
 
   let pomoChild1 = document.createElement("div");
-  pomoChild1.style.border = "1px solid black";
+  // pomoChild1.style.border = "1px solid black";
   pomoChild1.style.display = "flex";
-  pomoChild1.style.alignItems ="center";
+  pomoChild1.style.alignItems = "center";
   let iconSpan1 = document.createElement("span");
   iconSpan1.className = "material-symbols-outlined";
   iconSpan1.innerText = "timer";
@@ -483,36 +508,64 @@ function taskDetails(taskClass) {
   iconSpan1.style.marginRight = "5px";
   let textP1 = document.createElement("p");
   textP1.innerText = "Pomodoro";
-  pomoChild1.append(iconSpan1,textP1);
+  pomoChild1.append(iconSpan1, textP1);
   let pomoChild2 = document.createElement("div");
-  pomoChild2.style.border = "1px solid black";
+  // pomoChild2.style.border = "1px solid black";
   pomoChild2.innerText = "0m";
   pomoChild2.style.display = "flex";
   pomoChild2.style.alignItems = "center";
   pomoChild2.style.padding = "5px";
-  pomodoroDiv.append(pomoChild1,pomoChild2);
+  pomodoroDiv.append(pomoChild1, pomoChild2);
+
+  //------------Priority
+  let priorityDiv = document.createElement("div");
+  // priorityDiv.style.border = "1px solid black";
+  priorityDiv.style.width = "100%";
+  priorityDiv.style.height = "40px";
+  priorityDiv.style.display = "flex";
+  priorityDiv.style.justifyContent = "space-between";
+
+  let priorityChild1 = document.createElement("div");
+  // priorityChild1.style.border = "1px solid black";
+  priorityChild1.style.display = "flex";
+  priorityChild1.style.alignItems = "center";
+  let iconSpan7 = document.createElement("span");
+  iconSpan7.className = "material-symbols-outlined";
+  iconSpan7.innerText = "flag";
+  iconSpan7.style.marginLeft = "5px";
+  iconSpan7.style.marginRight = "5px";
+  let textP7 = document.createElement("p");
+  textP7.innerText = "Urgency";
+  priorityChild1.append(iconSpan7, textP7);
+  let priorityChild2 = document.createElement("div");
+  // priorityChild2.style.border = "1px solid black";
+  priorityChild2.innerText = "No Priority";
+  priorityChild2.style.display = "flex";
+  priorityChild2.style.alignItems = "center";
+  priorityChild2.style.padding = "5px";
+  priorityDiv.append(priorityChild1, priorityChild2);
 
   //--------due date
   let dueDateDiv = document.createElement("div");
-  dueDateDiv.style.border = "1px solid black";
+  // dueDateDiv.style.border = "1px solid black";
   dueDateDiv.style.width = "100%";
   dueDateDiv.style.height = "40px";
   dueDateDiv.style.display = "flex";
   dueDateDiv.style.justifyContent = "space-between";
   let dueDateChild1 = document.createElement("div");
-  dueDateChild1.style.border = "1px solid black";
+  // dueDateChild1.style.border = "1px solid black";
   dueDateChild1.style.display = "flex";
-  dueDateChild1.style.alignItems ="center";
+  dueDateChild1.style.alignItems = "center";
   let iconSpan2 = document.createElement("span");
   iconSpan2.className = "material-symbols-outlined";
   iconSpan2.innerText = "event";
   iconSpan2.style.marginLeft = "5px";
   iconSpan2.style.marginRight = "5px";
   let textP2 = document.createElement("p");
-  textP2.innerText = "Pomodoro";
-  dueDateChild1.append(iconSpan2,textP2);
+  textP2.innerText = "Due Date";
+  dueDateChild1.append(iconSpan2, textP2);
   let dueDateChild2 = document.createElement("div");
-  dueDateChild2.style.border = "1px solid black";
+  // dueDateChild2.style.border = "1px solid black";
   dueDateChild2.innerText = "0m";
   dueDateChild2.style.display = "flex";
   dueDateChild2.style.alignItems = "center";
@@ -521,25 +574,25 @@ function taskDetails(taskClass) {
 
   //-----------project
   let projectDiv = document.createElement("div");
-  projectDiv.style.border = "1px solid black";
+  // projectDiv.style.border = "1px solid black";
   projectDiv.style.width = "100%";
   projectDiv.style.height = "40px";
   projectDiv.style.display = "flex";
   projectDiv.style.justifyContent = "space-between";
   let projectChild1 = document.createElement("div");
-  projectChild1.style.border = "1px solid black";
+  // projectChild1.style.border = "1px solid black";
   projectChild1.style.display = "flex";
-  projectChild1.style.alignItems ="center";
+  projectChild1.style.alignItems = "center";
   let iconSpan3 = document.createElement("span");
   iconSpan3.className = "material-symbols-outlined";
   iconSpan3.innerText = "folder_special";
   iconSpan3.style.marginLeft = "5px";
   iconSpan3.style.marginRight = "5px";
   let textP3 = document.createElement("p");
-  textP3.innerText = "Pomodoro";
-  projectChild1.append(iconSpan3,textP3);
+  textP3.innerText = "Project";
+  projectChild1.append(iconSpan3, textP3);
   let projectChild2 = document.createElement("div");
-  projectChild2.style.border = "1px solid black";
+  // projectChild2.style.border = "1px solid black";
   projectChild2.innerText = "0m";
   projectChild2.style.display = "flex";
   projectChild2.style.alignItems = "center";
@@ -548,25 +601,25 @@ function taskDetails(taskClass) {
 
   //--------Reminder
   let reminderDiv = document.createElement("div");
-  reminderDiv.style.border = "1px solid black";
+  // reminderDiv.style.border = "1px solid black";
   reminderDiv.style.width = "100%";
   reminderDiv.style.height = "40px";
   reminderDiv.style.display = "flex";
   reminderDiv.style.justifyContent = "space-between";
   let reminderChild1 = document.createElement("div");
-  reminderChild1.style.border = "1px solid black";
+  // reminderChild1.style.border = "1px solid black";
   reminderChild1.style.display = "flex";
-  reminderChild1.style.alignItems ="center";
+  reminderChild1.style.alignItems = "center";
   let iconSpan4 = document.createElement("span");
   iconSpan4.className = "material-symbols-outlined";
   iconSpan4.innerText = "notifications_active";
   iconSpan4.style.marginLeft = "5px";
   iconSpan4.style.marginRight = "5px";
   let textP4 = document.createElement("p");
-  textP4.innerText = "Pomodoro";
-  reminderChild1.append(iconSpan4,textP4);
+  textP4.innerText = "Reminder";
+  reminderChild1.append(iconSpan4, textP4);
   let reminderChild2 = document.createElement("div");
-  reminderChild2.style.border = "1px solid black";
+  // reminderChild2.style.border = "1px solid black";
   reminderChild2.innerText = "0m";
   reminderChild2.style.display = "flex";
   reminderChild2.style.alignItems = "center";
@@ -575,64 +628,79 @@ function taskDetails(taskClass) {
 
   //----------repeat
   let repeatDiv = document.createElement("div");
-  repeatDiv.style.border = "1px solid black";
+  // repeatDiv.style.border = "1px solid black";
   repeatDiv.style.width = "100%";
   repeatDiv.style.height = "40px";
   repeatDiv.style.display = "flex";
   repeatDiv.style.justifyContent = "space-between";
   let repeatChild1 = document.createElement("div");
-  repeatChild1.style.border = "1px solid black";
+  // repeatChild1.style.border = "1px solid black";
   repeatChild1.style.display = "flex";
-  repeatChild1.style.alignItems ="center";
+  repeatChild1.style.alignItems = "center";
   let iconSpan5 = document.createElement("span");
   iconSpan5.className = "material-symbols-outlined";
-  iconSpan5.innerText = "replay";
+  iconSpan5.innerText = "Repeat";
   iconSpan5.style.marginLeft = "5px";
   iconSpan5.style.marginRight = "5px";
   let textP5 = document.createElement("p");
-  textP5.innerText = "Pomodoro";
-  repeatChild1.append(iconSpan5,textP5);
+  textP5.innerText = "Repeat";
+  repeatChild1.append(iconSpan5, textP5);
   let repeatChild2 = document.createElement("div");
-  repeatChild2.style.border = "1px solid black";
+  // repeatChild2.style.border = "1px solid black";
   repeatChild2.innerText = "0m";
   repeatChild2.style.display = "flex";
   repeatChild2.style.alignItems = "center";
   repeatChild2.style.padding = "5px";
   repeatDiv.append(repeatChild1, repeatChild2);
 
+  //--------hrline
+  let horizonLine2 = document.createElement("hr");
+  horizonLine2.style.marginTop = "30px";
+
   //----------add subtask
   let addSubTaskDiv = document.createElement("div");
-  addSubTaskDiv.style.border = "1px solid black";
-  addSubTaskDiv.style.height ="40px";
+  // addSubTaskDiv.style.border = "1px solid black";
+  addSubTaskDiv.style.height = "40px";
   addSubTaskDiv.style.display = "flex";
-  addSubTaskDiv.style.alignItems ="center";
+  addSubTaskDiv.style.alignItems = "center";
   let iconSpan6 = document.createElement("span");
   iconSpan6.className = "material-symbols-outlined";
   iconSpan6.innerText = "add";
   iconSpan6.style.marginLeft = "5px";
   iconSpan6.style.marginRight = "5px";
   let textP6 = document.createElement("p");
-  textP6.innerText = "Pomodoro";
-  addSubTaskDiv.append(iconSpan6,textP6);
+  textP6.innerText = "Add a subtask";
+  addSubTaskDiv.append(iconSpan6, textP6);
 
   //--------hrline
-  let horizonLine2 = document.createElement("hr");
-  horizonLine2.style.marginTop = "30px";
-  horizonLine2.style.marginBottom = "30px";
+  let horizonLine3 = document.createElement("hr");
+  horizonLine3.style.marginBottom = "30px";
 
   //----add a note
   let addNote = document.createElement("div");
-  addNote.style.border = "1px solid black";
+  addNote.style.padding = "10px";
+  addNote.style.width = "100%";
+  addNote.style.height = "20%";
   let noteTextArea = document.createElement("textArea");
+  noteTextArea.id = "addnote";
   noteTextArea.style.width = "100%";
   noteTextArea.style.height = "100%";
   noteTextArea.innerText = "Add Note";
   addNote.append(noteTextArea);
 
-  endBarBox1.append(divBox, horizonLine, pomodoroDiv, dueDateDiv);
-  endBarBox1.append(projectDiv,reminderDiv, repeatDiv, addSubTaskDiv);
-  endBarBox1.append(horizonLine2, addNote);
+  endBarBox1.append(divBox, horizonLine, pomodoroDiv, priorityDiv, dueDateDiv);
+  endBarBox1.append(projectDiv, reminderDiv, repeatDiv, horizonLine2);
+  endBarBox1.append(addSubTaskDiv, horizonLine3, addNote);
 }
 
-
 //creating endbar - showing task the first part
+
+document.querySelector("nav").addEventListener("click", ()=>{
+  console.log("hello");
+  if(midBar.style.display == "block"){
+    midBar.style.display = "none";
+  }else{
+    midBar.style.display = "block";
+  }
+  midBar.style.width = "57%";
+})
