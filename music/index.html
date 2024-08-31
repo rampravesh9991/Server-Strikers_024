@@ -88,7 +88,7 @@
 
 <body>
     <div class="player">
-        <img src="album-cover.jpg" alt="Album Cover" id="albumCover">
+        <img alt="Album Cover" id="albumCover">
         <div class="track-info">
             <h3 id="trackTitle">Track Title</h3>
             <p id="trackArtist">Artist Name</p>
@@ -109,46 +109,23 @@
 </body>
 
 </html>
-<script type="module">
-    // Import the functions you need from the SDKs you need
+<script>
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
 
-    // import { getStorage, ref, getDownloadURL } from "firebase/storage";
+    fetch("https://music-player-c728c-default-rtdb.firebaseio.com/music.json", requestOptions)
+        .then((response) => response.json())
+        .then((result) => loadSong(result))
+        .catch((error) => console.error(error));
 
-    // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-    // // TODO: Add SDKs for Firebase products that you want to use
-    // // https://firebase.google.com/docs/web/setup#available-libraries
 
-    // // Your web app's Firebase configuration
-    // const firebaseConfig = {
-    //     apiKey: "AIzaSyA-NutD-KXlQDYHvRV3VY6qdj8KTJP_04c",
-    //     authDomain: "music-player-c728c.firebaseapp.com",
-    //     databaseURL: "https://music-player-c728c-default-rtdb.firebaseio.com",
-    //     projectId: "music-player-c728c",
-    //     storageBucket: "music-player-c728c.appspot.com",
-    //     messagingSenderId: "106311030024",
-    //     appId: "1:106311030024:web:b66e85e3c395f22a4648bd"
-    // };
+    function catchme(result) {
 
-    // // Initialize Firebase
-    // const app = initializeApp(firebaseConfig);
-    // const storage = getStorage(app);
-   
 
-    //   // Create a reference to the file
-    //   const storageRef = ref(storage, 'gs://music-player-c728c.appspot.com');
 
-    //   // Get the download URL
-    //   getDownloadURL(storageRef)
-    //     .then((url) => {
-    //       console.log('gs://music-player-c728c.appspot.com', url);
-    //       // Use the URL to play the music or display the file
-    //       const audio = new Audio(url);
-    //       audio.play();
-    //     })
-    //     .catch((error) => {
-    //       console.error('Error fetching download URL', error);
-    //     });
-
+    }
 
     const audio = document.getElementById('audio');
     const playPauseButton = document.getElementById('playPause');
@@ -159,18 +136,22 @@
     const trackArtist = document.getElementById('trackArtist');
     const albumCover = document.getElementById('albumCover');
 
-    const songs = [
-        { title: 'Six Days', artist: 'DJ Shadow', src: 'Song3.mp3', cover: 'Cover1.jpg' },
-        { title: 'Mi Genete', artist: 'J Balivin', src: 'Song2.mp3', cover: 'Cover2.jpg' },
-        { title: 'Sadda Haq', artist: 'Mohit Chauhan', src: 'Song1.mp3', cover: 'Cover3.jpg' }
-    ];
+
     let currentSongIndex = 0;
 
-    function loadSong(song) {
-        trackTitle.textContent = song.title;
-        trackArtist.textContent = song.artist;
-        albumCover.src = song.cover;
-        audio.src = song.src;
+    function loadSong(result) {
+        let modified = Object.entries(result)
+
+        modified.map((ele) => {
+            let data = ele[1]
+            trackTitle.textContent = data.title;
+        trackArtist.textContent = data.artist;
+        albumCover.src = data.artwork;
+        audio.src = data.url;
+           
+        })
+
+       
     }
 
     function playSong() {
