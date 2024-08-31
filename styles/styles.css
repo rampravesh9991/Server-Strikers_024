@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
+
+/* Scroll Behavior */
 html {
     scroll-behavior: smooth;
 }
@@ -55,6 +57,8 @@ html {
     transition: background-color 0.3s ease-out, transform 0.3s ease-out;
 }
 
+/* Scroll Behavior End*/
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -64,13 +68,13 @@ body {
 }
 
 
-/* Navbar */
+/* Navbar Styles*/
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: transparent;
-    padding: 10px 20px;
+    background-color: #333;
+    padding: 20px 20px;
     position: fixed;
     width: 100%;
     top: 0;
@@ -79,7 +83,7 @@ body {
 }
 
 .navbar .logo img {
-    height: 50px;
+    height: 30px;
     width: auto;
 }
 
@@ -102,14 +106,21 @@ body {
     color: #f4f4f4;
 }
 
-/* Hero Section */
+/* Navbar Styles End*/
+
+
+/* Hero Section Style*/
 .hero {
     position: relative;
-    height: 140vh;
+    height: 110vh;
     overflow: hidden;
     animation: fadeIn 1s ease-in-out;
     background-color: black;
     z-index: -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #hero-video {
@@ -124,21 +135,11 @@ body {
     z-index: -1;
 }
 
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: -1;
-}
 
 .hero-text {
     position: relative;
     color: #fff;
     gap: 30px;
-    height: 100vh;
     flex-direction: column;
     margin-top: 30px;
     padding: 100px 20px;
@@ -163,17 +164,25 @@ body {
     font-family: "Roboto Mono", monospace;
 }
 
+
 .hero-text .cta-button {
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    margin: auto;
 }
 
 .cta-button {
-    background-color: #333;
+    background-color: #555;
     color: #fff;
     padding: 10px 20px;
-    width: 20%;
     border-radius: 5px;
 }
+
+/* Hero Section Style End*/
+
+/* Creativity Section Style*/
 
 #benefits {
     background-color: #f4f4f4;
@@ -193,6 +202,46 @@ body {
     background-color: rgb(205, 225, 232);
 }
 
+#circle .aim {
+    font-size: 6.2em;
+    letter-spacing: -10px;
+    word-spacing: -30px;
+    font-family: 'Roboto Mono', monospace;
+    color: black;
+    z-index: 11111;
+    margin-left: -800px;
+    margin-top: 100px;
+}
+
+.line {
+    width: 58%;
+    margin: 0px auto;
+    background-color: black;
+    height: 1px;
+    z-index: 1111;
+}
+
+#circle .quality {
+    font-size: 6.2em;
+    letter-spacing: -10px;
+    word-spacing: -30px;
+    font-family: 'Roboto Mono', monospace;
+    color: black;
+    z-index: 1111;
+    margin-left: 550px;
+}
+
+.theory {
+    font-size: 2rem;
+    letter-spacing: 0px;
+    word-spacing: -4px;
+    text-indent: 200px;
+    width: 60%;
+    z-index: 111;
+    margin-top: 50px;
+
+    font-family: 'Roboto Mono', monospace;
+}
 
 /* General card styles */
 .card-container {
@@ -312,15 +361,264 @@ body {
 }
 
 /* Add scroll event to trigger the animation */
+@media (max-width: 1200px) {
+    .cardsDiv {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+        position: relative;
+        perspective: 1000px;
+        box-sizing: border-box;
+        height: auto;
+    }
 
-.images {
-    height: 300px;
-    width: 300px;
-    margin-left: 20px;
+    #aboutSection h1 {
+        font-size: 3em;
+    }
+
+    .developer {
+        width: 45%;
+        height: 300px;
+    }
+
+    .developer .card-front h3 {
+        font-size: 1.5rem;
+    }
+
+    .developerName-1,
+    .developerName-2,
+    .developerName-3,
+    .developerName-4,
+    .developerName-5 {
+        position: static;
+        margin: 20px 0;
+    }
+
+
+    #circle {
+        left: 0;
+        width: 100%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        height: auto;
+        border-radius: 0px;
+        background-color: rgb(205, 225, 232);
+
+    }
+
+    #circle .aim {
+        margin-left: -450px;
+        font-size: 5em;
+    }
+
+    #circle .quality {
+        margin-right: -150px;
+        width: 100%;
+        font-size: 5em;
+    }
+
+    .line {
+        width: 80%;
+
+    }
+
+    #circle::after {
+        height: 440px;
+        width: 47%;
+        top: 0px;
+        left: 30%;
+        transform: translateX(-50%);
+        animation: shake 2s infinite ease-in-out;
+
+    }
+
+    #circle::before {
+        height: 270px;
+        width: 30%;
+        top: 200px;
+        left: 60%;
+        transform: translateX(-50%);
+        animation: shake 2s infinite ease-in-out;
+
+    }
+
+    #circle .theory {
+        margin-left: 80px;
+        font-size: 1.4em;
+
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        font-size: .8em;
+        font-weight: 300;
+    }
+
+    .hero p {
+        word-spacing: -40px;
+        letter-spacing: -10px;
+    }
+
+    #circle {
+        left: 0;
+        width: 100%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        height: auto;
+        border-radius: 0px;
+        background-color: rgb(205, 225, 232);
+    }
+
+    #circle .aim {
+        font-size: 2.8em;
+        letter-spacing: -2px;
+        word-spacing: -10px;
+        margin-left: -270px;
+        text-align: center;
+    }
+
+    #circle .quality {
+        font-size: 2.8em;
+        letter-spacing: -2px;
+        word-spacing: -10px;
+        box-sizing: border-box;
+        font-family: 'Roboto Mono', monospace;
+        color: black;
+        z-index: 1111;
+        width: 100%;
+        margin-right: -190px;
+    }
+
+    .line {
+        width: 70%;
+    }
+
+    #circle .theory {
+        font-size: 1.5rem;
+        text-indent: 0;
+        width: 90%;
+        margin: 30px auto;
+    }
+
+    .card-container {
+        flex-direction: column;
+        margin-top: 50px;
+        width: 100%;
+    }
+
+    .card {
+        position: relative;
+        width: 90%;
+        height: 300px;
+        margin: 20px 0;
+        transform: none;
+        z-index: 1;
+    }
+
+    .card-gif {
+        height: 100%;
+    }
+
+    .card:hover .card-gif {
+        filter: none;
+    }
+
+    #circle::after {
+        height: 340px;
+        width: 47%;
+        top: 0px;
+        left: 30%;
+        transform: translateX(-50%);
+        animation: shake 2s infinite ease-in-out;
+    }
+
+    #circle::before {
+        height: 200px;
+        width: 30%;
+        top: 160px;
+        left: 60%;
+        transform: translateX(-50%);
+        animation: shake 2s infinite ease-in-out;
+
+    }
+}
+
+#preview div {
+    width: 100%;
+}
+
+#preview h1 {
+    font-size: 1em;
+    color: #257995;
+    font-family: 'Roboto Mono', monospace;
+}
+
+@media (max-width: 480px) {
+
+    #circle {
+        padding-top: 20px;
+        width: 100%;
+    }
+
+
+    #circle .aim {
+        font-size: 1.5em;
+    }
+
+    #circle .quality {
+        font-size: 1.5em;
+        margin-right: 30px;
+    }
+
+
+    #circle .theory {
+        font-size: 0.8rem;
+        width: 80%;
+    }
+
+    .card {
+        width: 80%;
+        height: 250px;
+    }
+
+    .card-container {
+        margin-top: 20px;
+    }
+
+    #circle::before {
+        height: 150px;
+        width: 30%;
+    }
+
+    #circle::after {
+        height: 250px;
+        width: 50%;
+    }
+}
+
+@media (max-width:400px) {
+    #circle .quality {
+        margin-right: 130px;
+    }
 }
 
 
-/* Features Section */
+
+/* .images{
+    height: 300px;
+    width: 300px;
+    margin-left: 20px;
+} */
+
+
+/* Features Section Style*/
 .features-section {
     background-color: white;
     box-shadow: 2px 4px 6px black;
@@ -362,7 +660,12 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Testimonials Section */
+/* Features Section Style End*/
+
+
+
+
+/* Testimonials Section Style*/
 .testimonials-section {
     background: linear-gradient(transparent, black);
     padding: 60px 20px;
@@ -395,17 +698,14 @@ body {
     background: #444;
 }
 
-/* Testimonials Section Heading */
 .testimonials-section h2 {
     margin-bottom: 20px;
     animation: fadeInUp 1s ease-out;
     font-family: sans-serif;
     font-size: 40px;
     font-weight: 800;
-
 }
 
-/* Testimonials Container */
 .testimonials-container {
     display: flex;
     flex-direction: column;
@@ -413,7 +713,6 @@ body {
     padding: 0 10px;
     width: 50%;
     margin: auto;
-
 }
 
 .testimonial {
@@ -427,11 +726,12 @@ body {
     transform: translateY(50px);
 }
 
-/* Hover effect */
 .testimonial:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
+
+/* Testimonials Section Style End*/
 
 /* Scroll Animations */
 @keyframes slideInLeft {
@@ -467,14 +767,14 @@ body {
     animation: slideInRight 0.8s ease-out forwards;
 }
 
-/* Call to Action Section */
+
+/* Call to Action Section Styles*/
 .cta-section {
     color: #fff;
     padding: 60px 20px;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
     background: linear-gradient(black, transparent);
-
 }
 
 .button-gradient {
@@ -491,12 +791,17 @@ body {
     transform: scale(1.05);
 }
 
-/* Pomodore Preview*/
+/* Call to Action Section Style End*/
+
+
+
+
+/* Pomodore Preview Section Style*/
 #preview {
     background-color: #f4f4f4;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 60px 30px;
+    display: flex;
+    flex-direction: row;
+    padding: 60px 20px;
     justify-content: center;
     align-items: center;
     gap: 30px;
@@ -549,7 +854,6 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Text overlay */
 .about-grid-item .overlay-text {
     position: absolute;
     top: 0;
@@ -590,7 +894,8 @@ body {
     animation: imageFadeIn 1s ease-in-out;
 }
 
-/* Custom Scrollbar */
+
+/* Custom Scrollbar Style*/
 ::-webkit-scrollbar {
     width: none;
     height: 12px;
@@ -616,7 +921,11 @@ body {
     background: #444;
 }
 
-/* Animations */
+/* Custom Scrollbar Style End*/
+
+
+
+/* Animations Keyframes*/
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -663,47 +972,37 @@ body {
     }
 }
 
-/* About Section */
+
+
+/* About Section Style*/
 #aboutSection {
     background-color: #f4f4f4;
     height: auto;
     padding: 50px 70px;
-
-
-
 }
 
 #aboutSection h1 {
     font-size: 4em;
     text-align: center;
-    box-sizing: border-box;
     letter-spacing: -2px;
     font-weight: 700;
-
-
-
-
 }
 
 .cardsDiv {
     position: relative;
-    height: 200vh;
     perspective: 1000px;
     box-sizing: border-box;
-
+    height: 200vh;
 }
 
 .developer {
     height: 400px;
     width: 300px;
-    border: 1px solid black;
     border-radius: 10px;
-    position: absolute;
     background: linear-gradient(#257995, black);
     transform-style: preserve-3d;
     transition: transform 0.8s;
-
-
+    position: absolute;
 }
 
 .card-front,
@@ -721,23 +1020,16 @@ body {
 
 .developer .card-back {
     transform: rotateY(180deg);
-
-
 }
 
 .card-back img {
     border-radius: 10px;
-    background-color: white;
     filter: grayscale(100%);
     transition: filter 0.3s, mask-position 1s ease-out;
-    mask-image: linear-gradient(to bottom, grayscale(50%), transparent 100%);
-    mask-position: 0% 100%;
-    mask-size: 100% 200%;
 }
 
 .card-back img:hover {
     filter: grayscale(0%);
-    mask-position: 0% 0%;
 }
 
 .developer.flipped {
@@ -752,7 +1044,6 @@ body {
 .developerName-1 {
     left: 60px;
     top: 100px;
-
 }
 
 .developerName-2 {
@@ -763,7 +1054,6 @@ body {
 .developerName-3 {
     left: 37%;
     top: 34%;
-
 }
 
 .developerName-4 {
@@ -774,4 +1064,95 @@ body {
 .developerName-5 {
     left: 60px;
     bottom: 50px;
+}
+
+/* About Section Style End*/
+
+
+
+
+/* Media queries for responsiveness */
+
+/* For tablets */
+@media (max-width: 992px) {
+    .hero {
+        height: 80vh;
+    }
+
+    .hero-text p {
+        font-size: 8rem;
+    }
+
+    .hide {
+        display: none;
+
+    }
+
+    /* .cta-button{
+    display: block;
+   } */
+    #preview {
+        flex-wrap: wrap;
+    }
+
+    .cardsDiv {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+        position: relative;
+        perspective: 1000px;
+        box-sizing: border-box;
+        height: auto;
+    }
+
+    #aboutSection h1 {
+        font-size: 3em;
+    }
+
+    .developer {
+        width: 45%;
+        height: 300px;
+    }
+
+    .developer .card-front h3 {
+        font-size: 1.5rem;
+    }
+
+    .developerName-1,
+    .developerName-2,
+    .developerName-3,
+    .developerName-4,
+    .developerName-5 {
+        position: static;
+        margin: 20px 0;
+    }
+}
+
+/* For mobile screens */
+@media (max-width: 576px) {
+    .hero {
+        height: 70vh;
+    }
+
+    #preview {
+        flex-wrap: wrap;
+    }
+
+    #aboutSection h1 {
+        font-size: 2.5em;
+    }
+
+    .developer {
+        width: 100%;
+        height: 250px;
+    }
+
+    .developer .card-front h3 {
+        font-size: 1.2rem;
+    }
+
+    .cardsDiv {
+        flex-direction: column;
+    }
 }
