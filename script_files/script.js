@@ -44,24 +44,7 @@ document.getElementById("back-button").addEventListener("click", goBack);
         startTimer(time);
       }
 
-      // function startTimer(seconds) {
-      //   clearInterval(countdown);
-      //   const now = Date.now();
-      //   const then = now + seconds * 1000;
-
-      //   displayTimeLeft(seconds);
-      //   countdown = setInterval(() => {
-      //     const secondsLeft = Math.round((then - Date.now()) / 1000);
-      //     if (secondsLeft < 0) {
-      //       clearInterval(countdown);
-      //       updateProgress(seconds / 60);
-      //       document.getElementById("timer-status").textContent =
-      //         "Focus session completed!";
-      //       return;
-      //     }
-      //     displayTimeLeft(secondsLeft);
-      //   }, 1000);
-      // }
+   
       function startTimer(seconds) {
         
 
@@ -84,7 +67,7 @@ document.getElementById("back-button").addEventListener("click", goBack);
             clearInterval(countdown);
             updateProgress(seconds / 60);
             document.getElementById("timer-status").textContent =
-              "Focus session completed!";
+              " Completed!";
             document.querySelector(
               ".timer-border-progress"
             ).style.strokeDashoffset = "0"; // Complete the border
@@ -166,10 +149,8 @@ document.getElementById("back-button").addEventListener("click", goBack);
 
       function toggleTheme() {
         const body = document.body;
-        const lightImage =
-          "https://images.unsplash.com/photo-1508962914676-134849a727f0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-        const darkImage =
-          "https://newrelic.com/sites/default/files/styles/16x9_1200w/public/2021-04/pomodoro-timer.webp?h=a68e76a0&itok=CaHc5Tzh";
+       
+       
         isLightTheme = !isLightTheme;
         if (isLightTheme) {
           document.body.classList.add("light-theme");

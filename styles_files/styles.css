@@ -1,20 +1,24 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #1c1c1c;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+   
+    
+    
     height: 100vh;
     margin: 0;
-    /* transition: background-color 0.3s, color 0.3s; */
-    /* background-image: url('https://newrelic.com/sites/default/files/styles/16x9_1200w/public/2021-04/pomodoro-timer.webp?h=a68e76a0&itok=CaHc5Tzh'); */
-    background-image: url("https://newrelic.com/sites/default/files/styles/16x9_1200w/public/2021-04/pomodoro-timer.webp?h=a68e76a0&itok=CaHc5Tzh");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+   
+   
  
     transition: background-image 0.5s ease-in-out;
+  }
+  .maincontainer{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+   max-width: 1500px;
+   
   }
 
 
@@ -25,6 +29,9 @@ body {
         color: white;
         padding: 20px;
         text-align: center;
+        
+        justify-content: center;
+       
     }
 
   .container {
@@ -34,13 +41,24 @@ body {
     position: relative;
   }
 
-  .focus-session,
-  .daily-progress {
-    background-color: #2c2c2c;
+  .focus-session{
+    color: #000;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    width: 350px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    width: 400px;
+    height: 540px;
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
+  }
+  .daily-progress {
+    color: #000;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    width: 400px;
+    height: 231px;
+    
     transition: background-color 0.3s, color 0.3s;
     position: relative;
   }
@@ -143,7 +161,7 @@ body {
     margin-top: 20px;
     text-align: center;
     font-size: 24px;
-    background-color: #444;
+   
     padding: 10px;
     border-radius: 5px;
     
@@ -158,7 +176,8 @@ body {
   }
 
   .flip-clock__piece {
-    background-color: #333333;
+   background-color: whitesmoke;
+   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     padding: 10px 20px;
     margin: 0 5px;
@@ -172,12 +191,19 @@ body {
     font-size: 16px;
     color: #eee7e7;
   }
+  .light-theme #timer-status p{
+    background-color: red;
+
+  }
 
   .daily-progress .progress-circle {
     position: relative;
     width: 100px;
     height: 100px;
     margin: 0 auto;
+  }
+  .daily-progress h2{
+    margin-left: 35px;
   }
 
   .daily-progress .progress-circle svg {
@@ -205,8 +231,8 @@ body {
 
   .progress-text {
     position: absolute;
-    top: 30%;
-    left: 50%;
+    top: 20%;
+    left: 60%;
     transform: translate(-50%, -50%);
     font-size: 16px;
     text-align: center;
@@ -295,6 +321,9 @@ body {
   #theme-toggle:hover {
     background-color: #e64a19;
   }
+  #time-input{
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  }
 
   .light-theme body {
     background-color: #ffe9d0;
@@ -312,7 +341,7 @@ body {
   }
 
   .light-theme .flip-clock-wrapper {
-    background-color: #bbe9ff;
+    background-color: #b1afff;
   }
 
   .light-theme .timer {
@@ -326,7 +355,7 @@ body {
   }
 
   .light-theme #start-button {
-    background-color: #ff5722;
+    background-color: #e64a19;
   }
 
   .light-theme .modal-content {
@@ -335,7 +364,7 @@ body {
   }
 
   .light-theme #start-button:hover {
-    background-color: #e64a19;
+    background-color: #fd3c01;
   }
 
   .light-theme .flip-clock__piece {
@@ -343,10 +372,7 @@ body {
     color: #000;
   }
 
-  .light-theme #timer-status {
-    color: #000;
-    background: #bbe9ff;
-  }
+  
 
   .light-theme .progress-circle circle:nth-child(1) {
     stroke: #ff0808;
@@ -359,18 +385,27 @@ body {
   .light-theme .timer{
     background-color: #b1afff;
   }
+  .light-theme #pause-button{
+    background-color: #b1afff;
+  }
+  .light-theme #resume-button{
+    background-color: #b1afff;
+  }
+
 
   #progress-data {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    flex-direction: column;
-    margin-top: 150px;
+    margin-top: 45px;
+    gap: 10px;
+   
   }
 
   svg {
     width: 150px;
-    margin-top: 70px;
+    margin-left: 10px;
+    
   }
 
   #goal-input {
@@ -384,7 +419,7 @@ body {
     position: absolute;
     text-align: center;
     font-size: 24px;
-    background-color: #2c2c2c;
+    background-color: white;
     padding: 10px;
     border-radius: 5px;
     top: 0;
@@ -428,15 +463,16 @@ body {
 
   .flip-clock-wrapper {
     position: absolute;
-    top: 40%;
-    left: 25%;
+    top: 30%;
+    left: 30%;
+    color: #000;
    
   }
 
   #timer-status {
     position: absolute;
     top: 50%;
-    left: 35%;
+    left: 40%;
     color: black;
 
   }
@@ -454,9 +490,9 @@ bottom: 10px;
 }
 
 .control-button {
-background-color: #0078d4;
+
 border: none;
-color: white;
+background-color: white;
 font-size: 24px;
 padding: 12px;
 border-radius: 50%;
@@ -467,8 +503,9 @@ transition: background-color 0.3s ease, transform 0.3s ease;
 
 
 
+
 .control-button:hover {
-background-color: #005a9e;
+
 transform: scale(1.1);
 }
 
@@ -479,27 +516,38 @@ position: relative;
 }
 
 #back-button {
-background-color: #d9534f;
+background-color: rgb(0, 0, 0);
+padding: 10px;
+border: none;
+color: white;
+border-radius: 10px;
+width: 100px;
+
 }
 
 #back-button:hover {
-background-color: #c9302c;
+background-color:red;
 }
 
 .tooltip {
 visibility: hidden;
-background-color: #555;
+background-color: black;
+
 color: #fff;
 text-align: center;
 border-radius: 5px;
 padding: 5px;
 position: absolute;
 z-index: 1;
+
+
 bottom: 125%;
-left: 50%;
-margin-left: -60px;
+
+left: -50px;
 opacity: 0;
+font-size: smaller;
 transition: opacity 0.3s;
+width: 200px;
 }
 
 .back-container:hover .tooltip {
@@ -561,4 +609,12 @@ opacity: 1;
       font-size: 14px;
       padding: 4px;
     }
+  }
+
+  /* goal music */
+  .goal-music{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
   }
