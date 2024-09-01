@@ -729,3 +729,9 @@ function taskDetails(taskClass) {
   endBarBox1.append(projectDiv, reminderDiv, repeatDiv, horizonLine2);
   endBarBox1.append(addSubTaskDiv, horizonLine3, addNote);
 }
+
+// ------------------open pomodoro page----------------
+let timerDiv = document.getElementById("timerBox228");
+timerDiv.addEventListener("click",()=>{
+  window.location.href = "/html_files/main.html";
+})
