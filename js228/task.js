@@ -304,9 +304,6 @@ function createNewTask(value) {
   //task container
   let divBox = document.createElement("div");
   divBox.id = `ram${taskCounter++}`;
-  // divBox.addEventListener("click", ()=>{
-
-  // })
   divBox.style.border = "1px solid black";
   divBox.style.height = "40px";
   divBox.style.display = "flex";

@@ -1,72 +1,13 @@
+
 {
-    "users" : [
-        {
-            "id" : 1,
-            "name" : "ram",
-            "password" : 1234,
-            "today" : [],
-            "tomorrow" : [],
-            "this week" : [],
-            "next 7 days" : [],
-            "high priority" : [],
-            "medium priority" : [],
-            "low priority" : [],
-            "planned" :[],
-            "all" : [],
-            "someday" : [],
-            "completed" : [],
-            "task" : []
-        },
-        {
-            "id" : 2,
-            "name" : "ashu",
-            "password" : 1234,
-            "today" : [],
-            "tomorrow" : [],
-            "this week" : [],
-            "next 7 days" : [],
-            "high priority" : [],
-            "medium priority" : [],
-            "low priority" : [],
-            "planned" :[],
-            "all" : [],
-            "someday" : [],
-            "completed" : [],
-            "task" : []
-        },
-        {
-            "id" : 3,
-            "name" : "parveen",
-            "password" : 1234,
-            "today" : [],
-            "tomorrow" : [],
-            "this week" : [],
-            "next 7 days" : [],
-            "high priority" : [],
-            "medium priority" : [],
-            "low priority" : [],
-            "planned" :[],
-            "all" : [],
-            "someday" : [],
-            "completed" : [],
-            "task" : []
-        },
-        {
-            "id" : 4,
-            "name" : "vedant",
-            "password" : 1234,
-            "today" : [],
-            "tomorrow" : [],
-            "this week" : [],
-            "next 7 days" : [],
-            "high priority" : [],
-            "medium priority" : [],
-            "low priority" : [],
-            "planned" :[],
-            "all" : [],
-            "someday" : [],
-            "completed" : [],
-            "task" : []
-        }
-    ]
-}
+    "users": {
+      "ram@gmail_com": {
+        "password": "1234"
+      },
+      "ashu@gmail_com": {
+        "password": "1234"
+      }
+    }
+  }
+  
+  
