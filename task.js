@@ -235,24 +235,58 @@ function displayToday() {
   midBar.append(createSpace);
 }
 displayToday();
-// midBar.addEventListener("click", function(event){
-//   let elem1 = document.getElementById("statusDiv");
-//   let elem2 = document.getElementById("addTask");
-//   let elem3 = document.getElementById("highPriority");
-//   let elem4 = document.getElementById("mediumPriority"); 
-//   let elem5 = document.getElementById("lowPriority");
-//   let elem6 = document.getElementById("completed");
+midBar.addEventListener("click", function(event){
+  let arr = [];
+  let insideBoundary = true;
+  let elem1 = document.querySelector("#statusDiv");
+  if(elem1.contains(event.target)){
+    console.log("1");
+    insideBoundary = false;
+  }
 
-//   if((event.target != elem1)&&(event.target != elem2)&&
-//   (event.target != elem3)&&(event.target != elem4)&&
-//   (event.target != elem5)&&(event.target != elem6)){
-//     console.log("hello");
-//     let endbarHide = document.getElementById("endBar228");
-//     endbarHide.style.display = "none";
-//     midBar.style.width = "100%";
+  let elem2 = document.getElementById("addTask");
+  if(elem2.contains(event.target)){
+    console.log("2");
+    insideBoundary = false;
+  }
 
-//   }
-// })
+  let elem3 = document.querySelector("#highPriority");
+  if(elem3.contains(event.target)){
+    console.log("3");
+    insideBoundary = false;
+  }
+
+  let elem4 = document.querySelector("#mediumPriority"); 
+  if(elem4.contains(event.target)){
+    console.log("4");
+    insideBoundary = false;
+  }
+
+  let elem5 = document.querySelector("#lowPriority");
+  if(elem5.contains(event.target)){
+    console.log("5");
+    insideBoundary = false;
+  }
+
+  let elem6 = document.querySelector("#noPriority");
+  if(elem6.contains(event.target)){
+    console.log("6");
+    insideBoundary = false;
+  }
+
+  let elem7 = document.querySelector("#completed");
+  if(elem7.contains(event.target)){
+    console.log("7");
+    insideBoundary = false;
+  }
+  //if not touching any of the following
+  if(insideBoundary){
+    let endbarHide = document.getElementById("endBar228");
+    endbarHide.style.display = "none";
+    midBar.style.width = "100%";
+    console.log("hello i am mid");
+  }
+})
 
 //Creating new Task
 //all elements are created after displayToday() function, now access it.
@@ -370,7 +404,13 @@ endBar.style.display = "flex";
 endBar.style.flexDirection = "column";
 endBar.style.justifyContent = "space-between";
 
+let realEndBar = document.getElementById("endBar228");
+
 function taskDetails(taskClass) {
+  midBar.style.width = "57%";
+  realEndBar.style.display = "block";
+  console.log(realEndBar.style.display == "block");
+  // realEndBar.style.border = "1px solid black";
   endBar.innerHTML = "";
   let Tname = document.querySelector(`.${taskClass}>p`).innerText;
   console.log(Tname);
@@ -535,7 +575,7 @@ function taskDetails(taskClass) {
   iconSpan7.style.marginLeft = "5px";
   iconSpan7.style.marginRight = "5px";
   let textP7 = document.createElement("p");
-  textP7.innerText = "Urgency";
+  textP7.innerText = "Priority";
   priorityChild1.append(iconSpan7, textP7);
   let priorityChild2 = document.createElement("div");
   // priorityChild2.style.border = "1px solid black";
@@ -692,15 +732,3 @@ function taskDetails(taskClass) {
   endBarBox1.append(projectDiv, reminderDiv, repeatDiv, horizonLine2);
   endBarBox1.append(addSubTaskDiv, horizonLine3, addNote);
 }
-
-//creating endbar - showing task the first part
-
-document.querySelector("nav").addEventListener("click", ()=>{
-  console.log("hello");
-  if(midBar.style.display == "block"){
-    midBar.style.display = "none";
-  }else{
-    midBar.style.display = "block";
-  }
-  midBar.style.width = "57%";
-})

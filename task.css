@@ -51,7 +51,7 @@ nav > div > div:last-child > span {
 #sideBar228 {
   border: 1px solid black;
   min-width: 280px;
-  width: 10%;
+  width: 18%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -110,7 +110,8 @@ nav > div > div:last-child > span {
 }
 #midBar228 {
   /* border: 1px solid black; */
-  width: 57%;
+  min-width: 600px;
+  width: 100%;
   margin-left: 1%;
   margin-right: 1%;
   overflow: auto;
@@ -122,11 +123,13 @@ nav > div > div:last-child > span {
 
 #endBar228 {
   /* border: 1px solid black; */
+  min-width: 250px;
   width: 23%;
   height: 100%;
   margin-right: 1%;
   overflow: auto;
   padding-bottom: 70px;
+  display: none;
 }
 #endBar228::-webkit-scrollbar {
   width: 0;
@@ -154,6 +157,9 @@ nav > div > div:last-child > span {
 }
 
 /* Fullscreen transparent overlay */
+#loginBox{
+    display: none;
+}
 .overlay {
     position: fixed;
     top: 0;
@@ -185,6 +191,10 @@ nav > div > div:last-child > span {
     border: 1px solid black;
     display: flex;
     justify-content: flex-end;
+}
+.center-box2 > div:nth-child(1) > span{
+    border: 1px solid black;
+    cursor: pointer;
 }
 .center-box2 > div:nth-child(2){
     border: 1px solid black;
@@ -229,6 +239,7 @@ nav > div > div:last-child > span {
 }
 .center-box2 > div:nth-child(5) > button{
     padding: 5px 10px;
+    width: 100%;
 }
 .center-box2 > p{
     text-align: center;
