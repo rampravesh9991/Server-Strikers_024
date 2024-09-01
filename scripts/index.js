@@ -34,11 +34,6 @@ document
     this.classList.toggle("flipped");
   });
 
-function checkTasks() {
-  if (dynamic.childElementCount === 0) {
-    d1.style.display = "flex";
-  }
-}
 window.addEventListener("scroll", function () {
   const navbar = document.querySelector(".navbar");
   if (window.scrollY > 50) {
